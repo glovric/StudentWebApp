@@ -1,0 +1,9 @@
+@import "components/TestComponent.scss";
+@import "components/FetchComponent.scss";
+@import "components/Navbar.scss";
+
+.wrapper {
+    width: 80%; /* or a fixed width, like 600px */
+    margin: 0 auto; /* Horizontally center */
+    background-color: gray;
+}
