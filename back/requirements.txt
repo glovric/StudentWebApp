@@ -2,3 +2,4 @@ Django>=3.2
 mysqlclient
 djangorestframework
 django-cors-headers
+python-dotenv
