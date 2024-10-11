@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from api.views import StudentListCreateView, CourseListCreateView
+from django.urls import path, include
+from api.views import CourseListCreateView, get_csrf_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('students/', StudentListCreateView.as_view(), name='student-list-create'),
     path('courses/', CourseListCreateView.as_view(), name='course-list-create'),
+    path('', include('authapp.urls')),
+    path('csrf-token/', get_csrf_token, name='get_csrf_token'),
 ]

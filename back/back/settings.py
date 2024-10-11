@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'api'
+    'api',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -56,10 +57,19 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-#CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3001",
-    "http://localhost:5173",
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+"""CORS_ALLOW_HEADERS = list(default_headers) + [
+    'credentials',  # Allow credentials in the request
+    'csrftoken',
+    'Content-Type',  # Allow content type if necessary
+]"""
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+    "http://localhost:3001",  # Allow your React app
 ]
 
 ROOT_URLCONF = 'back.urls'
