@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
 
+    // For switching pages
     const navigate = useNavigate();
 
+    // Probably non React way of obtaining form values
     const extractFormData = (e: FormEvent<HTMLFormElement>) => {
         // Probably non React way of obtaining form values
         const form = e.currentTarget;
@@ -13,6 +15,7 @@ function LoginPage() {
         return {username, password};
     }
 
+    // Obtaining CSRF token (CORS stuff)
     const getCSRFToken = async () => {
         const response = await fetch('http://localhost:8000/csrf-token/', {
             method: 'GET',
@@ -26,6 +29,41 @@ function LoginPage() {
         return data.csrfToken; // Return the CSRF token
     };
 
+    // Testing JWT token
+    const handleProtected = async () => {
+
+        var accessToken = localStorage.getItem('accessToken');
+
+        try {
+
+            const response = await fetch('http://localhost:8000/protected/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`, // Include the JWT in the Authorization header
+                    'Content-Type': 'application/json', // Set the content type
+                },
+            });
+
+            if (response.status === 401) {
+                // If unauthorized, refresh the access token
+                accessToken = await refreshAccessToken();
+                if(accessToken) {console.log("Access token renewed.");}
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log(result);
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // Login handling
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
@@ -34,29 +72,78 @@ function LoginPage() {
         
         try {
 
-            const csrfToken = await getCSRFToken();
+            // Get csrf token
+            //const csrfToken = await getCSRFToken();
 
+            // Send request to /login
             const response = await fetch('http://localhost:8000/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken,
+                    //'X-CSRFToken': csrfToken,
                 },
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify(formData),
             });
 
             const result = await response.json();
 
+            // If response is ok (user exists), it returns JWT token
             if (response.ok) {
+                const { access, refresh } = result;
+                localStorage.setItem('accessToken', access);
+                localStorage.setItem('refreshToken', refresh);
                 console.log('Login successful!');
                 navigate('/');
-
             } else {
                 console.log(`Login failed: ${result.message}`);
             }
+
         } catch (error) {
             console.log(`An error occurred: ${(error as Error).message}`);
+        }
+
+    };
+
+    const handleLogOut = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/login';
+    }
+
+    const refreshAccessToken = async () => {
+        const refreshToken = localStorage.getItem('refreshToken');
+    
+        if (!refreshToken) {
+            console.error('No refresh token found. User needs to log in again.');
+            return null;
+        }
+    
+        try {
+
+            const response = await fetch('http://localhost:8000/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ refresh: refreshToken }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to refresh token');
+            }
+    
+            const data = await response.json();
+            localStorage.setItem('accessToken', data.access);
+            return data.access;
+        } catch (error) {
+
+            console.error('Error refreshing access token:', error);
+            // Optionally log out the user
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            window.location.href = '/login'; // Redirect to login
+            return null;
         }
 
     };
@@ -83,6 +170,10 @@ function LoginPage() {
 
                 <button type="submit">Submit</button>
             </form>
+
+            <button onClick={handleProtected}>Test JWT token</button>
+            <button onClick={handleLogOut}>Log Out</button>
+
         </div>
     )
 
