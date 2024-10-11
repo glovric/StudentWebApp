@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 import json
-from django.contrib.auth.hashers import make_password
         
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
@@ -40,6 +39,6 @@ def register(request):
         )
         user.save()
 
-        return JsonResponse({'success': True, 'message': "Your account has been created! You can now log in."})
+        return JsonResponse({'success': True, 'message': f"Your account has been created! You can now log in.", 'email': email})
 
     return JsonResponse({'success': False, 'message': "Invalid request method."}, status=405)

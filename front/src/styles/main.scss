@@ -2,8 +2,9 @@
 @import "components/FetchComponent.scss";
 @import "components/Navbar.scss";
 
-@import "pages/login.scss";
-@import "pages/register.scss";
+@import "pages/LoginPage.scss";
+@import "pages/RegisterPage.scss";
+@import "pages/RegisterSuccessPage.scss";
 
 .wrapper {
     width: 80%; /* or a fixed width, like 600px */

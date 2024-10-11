@@ -1,0 +1,32 @@
+.register {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-field {
+        margin: 5px 0;
+    }
+
+    .password-strength-bar {
+        height: 7px;
+        background-color: #e0e0e0;
+        //borderRadius: "1px",
+        //overflow: "hidden",
+        margin: 10px 0;
+        display: flex;
+
+        .single-bar {
+            height: 100%;
+            flex: 1;
+            border: gray 0.5px solid;
+        }
+    }
+    
+}
