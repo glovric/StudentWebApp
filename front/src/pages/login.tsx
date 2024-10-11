@@ -1,4 +1,4 @@
-import { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
@@ -88,7 +88,7 @@ function LoginPage() {
 
             const result = await response.json();
 
-            // If response is ok (user exists), it returns JWT token
+            // If response is ok (user exists), return JWT token
             if (response.ok) {
                 const { access, refresh } = result;
                 localStorage.setItem('accessToken', access);
@@ -108,7 +108,8 @@ function LoginPage() {
     const handleLogOut = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
+        console.log("User logged out.");
+        navigate('/login');
     }
 
     const refreshAccessToken = async () => {
@@ -136,14 +137,15 @@ function LoginPage() {
             const data = await response.json();
             localStorage.setItem('accessToken', data.access);
             return data.access;
+
         } catch (error) {
 
             console.error('Error refreshing access token:', error);
-            // Optionally log out the user
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
-            window.location.href = '/login'; // Redirect to login
+            navigate('/login');
             return null;
+            
         }
 
     };
