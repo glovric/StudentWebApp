@@ -4,6 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 import json
+from api.models import Student
+from random import choices
+
         
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
@@ -21,6 +24,7 @@ def register(request):
         username = first_name[0].lower() + last_name.lower()
         email = first_name[0].lower() + last_name.lower() + "@faks.com"
         password = data.get('password')
+        academic_id = '420' + ''.join(choices('123456789', k=5))
     
         # Validate the input
         if User.objects.filter(username=username).exists():
@@ -37,8 +41,12 @@ def register(request):
             email=email,
             password=password,
         )
-        user.save()
 
-        return JsonResponse({'success': True, 'message': f"Your account has been created! You can now log in.", 'email': email})
+        Student.objects.create(user=user, academic_id=academic_id)
+
+        return JsonResponse({'success': True, 
+                             'message': "Your account has been created! You can now log in.", 
+                             'email': email, 
+                             'username': username})
 
     return JsonResponse({'success': False, 'message': "Invalid request method."}, status=405)

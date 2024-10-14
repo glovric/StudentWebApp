@@ -6,7 +6,7 @@ function RegisterSuccessPage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { email } = location.state || {};
+    const { email, username } = location.state || {};
 
     useEffect(() => {
 
@@ -21,6 +21,7 @@ function RegisterSuccessPage() {
             <div>
                 <h1>Registration Successful!</h1>
                 <p>Your account has been successfully registered.</p>
+                <p>Username: <strong>{username}</strong></p>
                 <p>Email: <strong>{email}</strong></p>
             </div>
 

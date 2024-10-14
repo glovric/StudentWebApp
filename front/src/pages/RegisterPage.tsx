@@ -47,8 +47,8 @@ function RegisterPage() {
             // If response is ok (user exists), it returns JWT token
             if (response.ok) {
                 console.log('Registration successful!');
-                const { email } = result; // Extract email from response
-                navigate('/register-success', { state: { email } });
+                const { email, username } = result; // Extract email from response
+                navigate('/register-success', { state: { email, username } });
             } else {
                 console.log(`Registration failed: ${result.message}`);
                 setErrorMessage(result.message);
