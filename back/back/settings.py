@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'api',
-    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -173,3 +172,60 @@ CORS_ALLOWED_ORIGINS = [
 #CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} [{asctime}] {module} {message}',
+            'style': '{',
+            'datefmt': '%d.%m.%Y %H:%M:%S',  # Format the date as required
+        },
+        'simple': {
+            'format': '{levelname} [{asctime}] {message}',
+            'style': '{',
+            'datefmt': '%d/%b/%Y %H:%M:%S',  # Format the date as required
+        },
+    },
+    'handlers': {
+        'info_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/info.log'),
+            'formatter': 'verbose',
+        },
+        'warning_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/warning.log'),
+            'formatter': 'verbose',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/error.log'),
+            'formatter': 'verbose',
+        },
+        'critical_file': {
+            'level': 'CRITICAL',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/critical.log'),
+            'formatter': 'verbose',
+        },
+        'console': {  # Add a console handler
+            'level': 'INFO',  # Only capture WARNING and higher
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['info_file', 'warning_file', 'error_file', 'critical_file', 'console'],
+            'level': 'DEBUG',  # Capture all levels
+            'propagate': True,
+        },
+    },
+}

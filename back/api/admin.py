@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import Course, Student, Teacher
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'points')  # Fields to display in the list view
-    search_fields = ('name',)  # Add a search bar for the title field
+    list_display = ('name', 'points')
+    search_fields = ('name',)
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('academic_id', 'get_email', 'get_first_name', 'get_last_name')  # Fields to display in the list view
@@ -37,8 +37,10 @@ class TeacherAdmin(admin.ModelAdmin):
         return obj.user.email
     
     def save_model(self, request, obj, form, change):
+
+        # Save the Teacher
         super().save_model(request, obj, form, change)
-        print(f'save model teachera: {request}, {obj}, {form}, change: {change}')
+
         # If this is a new Teacher, delete the associated Student if it exists
         if not change:  # New instance creation
             try:

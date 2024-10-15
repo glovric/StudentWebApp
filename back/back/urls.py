@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.views import CourseListCreateView, get_csrf_token
+from api.views import CourseListCreateView, ProtectedView, register, get_csrf_token
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', CourseListCreateView.as_view(), name='course-list-create'),
-    path('', include('authapp.urls')),
     path('csrf-token/', get_csrf_token, name='get_csrf_token'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('register/', register, name='register'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('protected/', ProtectedView.as_view(), name='protected_view'),
 ]
