@@ -1,5 +1,6 @@
 import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
+import { getJWT, refreshAccessToken, setJWT } from '../tokens/Tokens';
 
 function LoginPage() {
 
@@ -15,24 +16,10 @@ function LoginPage() {
         return {username, password};
     }
 
-    // Obtaining CSRF token (CORS stuff)
-    const getCSRFToken = async () => {
-        const response = await fetch('http://localhost:8000/csrf-token/', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        if (!response.ok) {
-            throw new Error('Failed to fetch CSRF token');
-        }
-    
-        const data = await response.json();
-        return data.csrfToken; // Return the CSRF token
-    };
-
     // Testing JWT token
     const handleProtected = async () => {
 
-        var accessToken = localStorage.getItem('accessToken');
+        var accessToken = getJWT().access;
 
         try {
 
@@ -91,8 +78,7 @@ function LoginPage() {
             // If response is ok (user exists), return JWT token
             if (response.ok) {
                 const { access, refresh } = result;
-                localStorage.setItem('accessToken', access);
-                localStorage.setItem('refreshToken', refresh);
+                setJWT({ access, refresh });
                 console.log('Login successful!');
                 navigate('/');
             } else {
@@ -111,44 +97,6 @@ function LoginPage() {
         console.log("User logged out.");
         navigate('/login');
     }
-
-    const refreshAccessToken = async () => {
-        const refreshToken = localStorage.getItem('refreshToken');
-    
-        if (!refreshToken) {
-            console.error('No refresh token found. User needs to log in again.');
-            return null;
-        }
-    
-        try {
-
-            const response = await fetch('http://localhost:8000/token/refresh/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ refresh: refreshToken }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to refresh token');
-            }
-    
-            const data = await response.json();
-            localStorage.setItem('accessToken', data.access);
-            return data.access;
-
-        } catch (error) {
-
-            console.error('Error refreshing access token:', error);
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            navigate('/login');
-            return null;
-            
-        }
-
-    };
 
     return (
         <div className="login">
