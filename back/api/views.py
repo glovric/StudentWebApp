@@ -1,8 +1,9 @@
 from rest_framework import generics
-from .models import Course, Student, Teacher
+from .models import Course, Student
 from .serializers import CourseSerializer
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
+
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
@@ -59,31 +60,3 @@ def register(request):
                              'username': username})
 
     return JsonResponse({'success': False, 'message': "Invalid request method."}, status=405)
-
-class DashboardView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-
-        # Get user ID from request (JWT payload)
-        user_id = request.user.id
-
-        # Check if teacher with such user ID exists
-        teacher_exists = Teacher.objects.filter(user_id=user_id).exists()
-
-        if not request.user.is_authenticated or not teacher_exists:
-            return JsonResponse({'error': 'You do not have permission to access this dashboard.'}, status=403)
-        
-        students = Student.objects.all()
-        
-        student_data = [
-            {
-                'username': student.user.username,
-                'email': student.user.email,
-                'academic_id': student.academic_id,
-                'user_id': student.user_id
-            }
-            for student in students
-        ]
-        
-        return JsonResponse(student_data, safe=False)
