@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import Navbar from './components/Navbar';
 
 import './styles/main.scss';
+import { UserProvider } from './contexts/UserContext';
 
 
 function App() {

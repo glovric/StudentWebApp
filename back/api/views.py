@@ -87,3 +87,37 @@ class DashboardView(APIView):
         ]
         
         return JsonResponse(student_data, safe=False)
+    
+class UserDataView(APIView):
+    
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+
+        # Get user ID from request (JWT payload)
+        user_id = request.user.id
+
+        # Fetch the user instance
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return JsonResponse({'message': 'User does not exist.'}, status=404)
+        
+        if Student.objects.filter(user_id=user_id).exists():
+            user_type = 'student'
+        elif Teacher.objects.filter(user_id=user_id).exists():
+            user_type = 'teacher'
+        else:
+            user_type = 'admin'
+
+        # Prepare user data to return
+        user_data = {
+            'user_id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'user_type': user_type
+        }
+
+        return JsonResponse(user_data, status=200)

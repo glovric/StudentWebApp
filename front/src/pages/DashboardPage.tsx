@@ -35,7 +35,7 @@ function DashboardPage() {
                 console.log("Response u Dashboardu:", result);
                 setStudents(result);
             } else {
-                console.log(`Dashboard failed: ${result.error}`);
+                console.log("Dashboard failed:", result);
             }
 
         } catch (error) {

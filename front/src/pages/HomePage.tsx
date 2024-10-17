@@ -1,15 +1,15 @@
-import DrugiComponent from '../components/DrugiComponent';
+import { useUser } from "../contexts/UserContext";
 import FetchComponent from '../components/FetchComponent'
-import TestComponent from '../components/TestComponent'
 
 function HomePage() {
 
+    const { userData } = useUser();
+
     return (
-        <>
-            <TestComponent></TestComponent>
-            <DrugiComponent></DrugiComponent>
+        <div>
+            Welcome {userData ? userData.username : 'Guest' }!
             <FetchComponent></FetchComponent>
-        </>
+        </div>
     )
 
 }

@@ -65,3 +65,8 @@ export const getJWT = () => {
     const refresh = localStorage.getItem('refreshToken');
     return { access, refresh }
 }
+
+export const removeJWT = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+}

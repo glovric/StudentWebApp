@@ -1,8 +1,11 @@
 import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getJWT, refreshAccessToken, setJWT } from '../tokens/Tokens';
+import { getJWT, refreshAccessToken, setJWT, removeJWT } from '../tokens/Tokens';
+import { useUser } from "../contexts/UserContext";
 
 function LoginPage() {
+
+    const { fetchUserData, setUserData } = useUser();
 
     // For switching pages
     const navigate = useNavigate();
@@ -59,17 +62,12 @@ function LoginPage() {
         
         try {
 
-            // Get csrf token
-            //const csrfToken = await getCSRFToken();
-
             // Send request to /login
             const response = await fetch('http://localhost:8000/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    //'X-CSRFToken': csrfToken,
                 },
-                //credentials: 'include',
                 body: JSON.stringify(formData),
             });
 
@@ -79,6 +77,7 @@ function LoginPage() {
             if (response.ok) {
                 const { access, refresh } = result;
                 setJWT({ access, refresh });
+                fetchUserData();
                 console.log('Login successful!');
                 navigate('/');
             } else {
@@ -92,8 +91,8 @@ function LoginPage() {
     };
 
     const handleLogOut = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        removeJWT();
+        setUserData(null);
         console.log("User logged out.");
         navigate('/login');
     }
