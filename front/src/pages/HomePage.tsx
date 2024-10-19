@@ -4,13 +4,14 @@ import courses from "../assets/courses.jpg";
 import professors from "../assets/professors.png";
 import research from "../assets/research.jpg";
 import uni from "../assets/uni.jpg";
+import { useElementOnScreen, isElementVisibleOnScreen } from "../hooks/useElementOnScreen";
 
 function HomePage() {
 
     const { userData } = useUser();
 
-    const location = "48.858844,2.294351"; // Replace with your desired coordinates
-    const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${location}`;
+    useElementOnScreen(".left", "slide-in-left", {threshold: 0.1});
+    useElementOnScreen(".right", "slide-in-right", {threshold: 0.1});
 
     return (
         <div>

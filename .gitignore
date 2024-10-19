@@ -11,7 +11,7 @@
 **/pnpm-debug.log*
 **/lerna-debug.log*
 **/local_pass.txt
-**/todo.txt
+**/to-do.txt
 
 **/dist
 **/dist-ssr
