@@ -2,12 +2,14 @@
 @import "components/FetchComponent.scss";
 @import "components/Navbar.scss";
 
+@import "pages/HomePage.scss";
 @import "pages/LoginPage.scss";
 @import "pages/RegisterPage.scss";
 @import "pages/RegisterSuccessPage.scss";
 
 .wrapper {
-    width: 80%; /* or a fixed width, like 600px */
+    width: 90%; /* or a fixed width, like 600px */
     margin: 0 auto; /* Horizontally center */
-    background-color: gray;
+    background-color: rgb(236, 236, 236);
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }

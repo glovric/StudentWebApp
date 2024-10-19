@@ -1,0 +1,46 @@
+@import "../variables.scss";
+
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.container-item {
+    color: $secondary-color;
+    padding: 0 10px;
+    background-color: $primary-color;
+    width: 90%;
+    margin-bottom: 50px;
+    font-size: 20px;
+
+    display: flex;
+    flex-direction: row;
+
+    img {
+        width: 300px;
+    }
+
+    h2 {
+        text-decoration: underline;
+        
+    }
+}
+
+.map {
+    width: 600px;
+    height: 300px;
+    align-self: center;
+    border: 0;
+}
+
+.left {
+    align-self: flex-start;
+    margin-left: 2%;
+}
+
+.right {
+    align-self: flex-end;
+    text-align: right;
+    margin-right: 2%;
+}

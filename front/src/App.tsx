@@ -8,22 +8,21 @@ import DashboardPage from './pages/DashboardPage';
 import Navbar from './components/Navbar';
 
 import './styles/main.scss';
-import { UserProvider } from './contexts/UserContext';
 
 
 function App() {
 
   return (
-    <>
+    <div className='wrapper'>
       <Navbar></Navbar>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/register-success" element={<RegisterSuccessPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-      </Routes>
-    </>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register-success" element={<RegisterSuccessPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Routes>
+    </div>
   )
     
 }
