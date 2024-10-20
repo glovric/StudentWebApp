@@ -10,9 +10,9 @@ export function useElementOnScreen(targetClass: any, addClass: string, options: 
               if (entry.isIntersecting) {
                 entry.target.classList.add(addClass);
               }
-              else {
-                entry.target.classList.remove(addClass);
-              }
+              //else {
+              //  entry.target.classList.remove(addClass);
+              //}
             });
 
           }, options);

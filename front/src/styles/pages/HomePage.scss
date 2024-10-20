@@ -1,64 +1,71 @@
 @import "../variables.scss";
 
 .home-page-container {
+
     display: flex;
     flex-direction: column;
     margin: auto;
-}
 
-.container-item {
-    color: $secondary-color;
-    padding: 0 10px;
-    background-color: $primary-color;
-    width: 90%;
-    margin-bottom: 50px;
-    font-size: 20px;
+    .item {
+        color: $secondary-color-gold;
+        background-color: $primary-color-green;
+        width: 80%;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        font-size: 20px;
+        padding: 30px;
+    
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
 
-    display: flex;
-    flex-direction: row;
-
-    img {
-        width: 300px;
-    }
-
-    h2 {
-        text-decoration: underline;
+        img {
+            width: 400px;
+            height: 400px;
+            border: 2px solid $secondary-color-gold;
+        }
+    
+        h2 {
+            text-decoration: underline;
+        }
         
     }
+
+
+    .left {
+        align-self: flex-start;
+        margin-left: 2%;
+        opacity: 0; /* Start invisible */
+        transform: translateX(-50%); /* Start off-screen to the left */
+        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+    }
+
+    .slide-in-left {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .right {
+        align-self: flex-end;
+        text-align: right;
+        margin-right: 2%;
+        opacity: 0; /* Start invisible */
+        transform: translateX(50%); /* Start off-screen to the left */
+        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+    }
+    
+    .slide-in-right {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
 }
 
 .map {
-    width: 600px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     align-self: center;
     border: 0;
-}
-
-.left {
-    align-self: flex-start;
-    margin-left: 2%;
-    opacity: 0; /* Start invisible */
-    transform: translateX(-50%); /* Start off-screen to the left */
-    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
-}
-
-.slide-in-left {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.right {
-    align-self: flex-end;
-    text-align: right;
-    margin-right: 2%;
-    opacity: 0; /* Start invisible */
-    transform: translateX(50%); /* Start off-screen to the left */
-    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
-}
-
-.slide-in-right {
-    opacity: 1;
-    transform: translateX(0);
 }
 
 .animate {

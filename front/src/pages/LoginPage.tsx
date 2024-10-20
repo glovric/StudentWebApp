@@ -2,10 +2,13 @@ import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getJWT, refreshAccessToken, setJWT, removeJWT } from '../tokens/Tokens';
 import { useUser } from "../contexts/UserContext";
+import { useElementOnScreen } from "../hooks/useElementOnScreen";
+
 
 function LoginPage() {
 
     const { fetchUserData, setUserData } = useUser();
+    useElementOnScreen(".form", "slide-in-up", {threshold: 0.1});
 
     // For switching pages
     const navigate = useNavigate();
@@ -99,9 +102,9 @@ function LoginPage() {
 
     return (
         <div className="login">
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
 
-                <div>Mail:</div>
+                <h3>Mail:</h3>
 
                 <input 
                     type="text" 
@@ -109,7 +112,7 @@ function LoginPage() {
                     required>
                 </input>
 
-                <div>Password:</div>
+                <h3>Password:</h3>
 
                 <input 
                     type="password"
@@ -118,10 +121,9 @@ function LoginPage() {
                 </input>
 
                 <button type="submit">Submit</button>
+                <button onClick={handleProtected}>Test JWT token</button>
+                <button onClick={handleLogOut}>Log Out</button>
             </form>
-
-            <button onClick={handleProtected}>Test JWT token</button>
-            <button onClick={handleLogOut}>Log Out</button>
 
         </div>
     )

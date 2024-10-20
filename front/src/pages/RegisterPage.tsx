@@ -1,10 +1,13 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
+import { useElementOnScreen } from "../hooks/useElementOnScreen";
+
 
 function RegisterPage() {
 
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    useElementOnScreen(".form", "slide-in-up", {threshold: 0.1});
 
     // For switching pages
     const navigate = useNavigate();
@@ -110,28 +113,23 @@ function RegisterPage() {
     return (
         <div className="register">
 
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
 
-                <div className="input-field">
-                    <div>First name:</div>
+                    <h3>First name:</h3>
                     <input 
                         type="text" 
                         id="first_name" 
                         required>
                     </input>
-                </div>
 
-                <div className="input-field">
-                    <div>Last name:</div>
+                    <h3>Last name:</h3>
                     <input 
                         type="text" 
                         id="last_name" 
                         required>
                     </input>
-                </div>
 
-                <div className="input-field">
-                    <div>Password:</div>
+                    <h3>Password:</h3>
                     <input 
                         type="password" 
                         id="password"
@@ -139,14 +137,13 @@ function RegisterPage() {
                         required>
                     </input>
 
-                    <div className="password-strength-bar">
+                <div className="password-strength-bar">
                     {Array.from({ length: 5 }, (_, index) => (
                         <div key={index}
                              className="single-bar"
                              style={{backgroundColor: index <= strengthScore ? getColor(index) : "#e0e0e0"}}
                         />
                     ))}
-                    </div>
                 </div>
 
                 <button type="submit">Register</button>

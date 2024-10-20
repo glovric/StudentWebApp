@@ -3,30 +3,84 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 
-    form {
+    h3 {
+        color: $secondary-color-gold;
+        margin: 0;
+        text-align: left;
+    }
+
+    .form {
         display: flex;
         flex-direction: column;
-    }
-
-    .input-field {
-        margin: 5px 0;
-    }
-
-    .password-strength-bar {
-        height: 7px;
-        background-color: #e0e0e0;
-        //borderRadius: "1px",
-        //overflow: "hidden",
-        margin: 10px 0;
-        display: flex;
-
-        .single-bar {
-            height: 100%;
-            flex: 1;
-            border: gray 0.5px solid;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 50%;
+        background-color: $primary-color-green;
+    
+        opacity: 0; /* Start invisible */
+        transform: translateY(50%); /* Start off-screen to the left */
+        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+    
+        h3 {
+            color: $secondary-color-gold;
+            margin: 0;
+            text-align: left;
         }
+    
+        input {
+            font-size: 18px; /* Adjusts the text size */
+            padding: 10px;   /* Increases space inside the input */
+            height: 30px;    /* Sets a specific height */
+            width: 300px;     /* Makes the input field responsive */
+            box-sizing: border-box; /* Ensures padding is included in width */
+            margin: 10px;
+        }
+
+        .password-strength-bar {
+            width: 200px;
+            height: 7px;
+            background-color: #e0e0e0;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: row;
+            align-self: stretch;
+    
+            .single-bar {
+                height: 100%;
+                flex: 1;
+                border: gray 0.5px solid;
+            }
+        }
+    
+    }
+
+    .slide-in-up {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    button {
+        background-color: $secondary-color-gold; /* Bootstrap primary color */
+        color: $primary-color-green;              /* Text color */
+        border: none;              /* No border */
+        padding: 10px 20px;        /* Vertical and horizontal padding */
+        font-size: 16px;           /* Font size */
+        border-radius: 5px;        /* Rounded corners */
+        cursor: pointer;           /* Pointer on hover */
+        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+        margin: 10px 0;
+    }
+    
+    button:hover {
+        background-color: #82744b; /* Darker shade on hover */
+    }
+    
+    button:active {
+        transform: translateY(0); /* Reset lift on click */
+        background-color: $secondary-color-gold; /* Even darker shade on click */
     }
     
 }

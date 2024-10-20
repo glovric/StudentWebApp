@@ -10,6 +10,6 @@
 .wrapper {
     width: 90%; /* or a fixed width, like 600px */
     margin: 0 auto; /* Horizontally center */
-    background-color: rgb(236, 236, 236);
+    background-color: $light-gray; //rgb(236, 236, 236);
     font-family:Verdana, Geneva, Tahoma, sans-serif
 }
