@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.views import CourseListCreateView, ProtectedView, DashboardView, UserDataView, register, get_csrf_token
+from api.views import CourseView, ProtectedView, DashboardView, UserDataView, EnrollView, register, get_csrf_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('courses/', CourseListCreateView.as_view(), name='course-list-create'),
+    path('courses/', CourseView.as_view(), name='course-list-create'),
     path('csrf-token/', get_csrf_token, name='get_csrf_token'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('register/', register, name='register'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('protected/', ProtectedView.as_view(), name='protected_view'),
     path('dashboard/', DashboardView.as_view(), name='dashboard_view'),
-    path('user_data/', UserDataView.as_view(), name='user_data_view')
+    path('user_data/', UserDataView.as_view(), name='user_data_view'),
+    path('enroll/', EnrollView.as_view(), name='enroll')
 ]

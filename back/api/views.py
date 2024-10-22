@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Course, Student, Teacher
+from .models import Course, Student, Teacher, Enrollment
 from .serializers import CourseSerializer
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
@@ -8,10 +8,35 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 import json
 from random import choices
+from django.shortcuts import get_object_or_404
 
-class CourseListCreateView(generics.ListCreateAPIView):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+class CourseView(APIView):
+
+    def get(self, request):
+
+        if request.user:
+            user_id = request.user.id
+             # Retrieve all courses
+            courses = Course.objects.all()
+            
+            # Get enrollments for the current user
+            user_enrollments = Enrollment.objects.filter(student__user__id=user_id)
+            enrolled_course_ids = user_enrollments.values_list('course_id', flat=True)
+
+            courses_left = []
+            for course in courses:
+                # Skip courses the user is already enrolled in
+                if course.id not in enrolled_course_ids:
+                    courses_left.append(course)
+
+            serializer = CourseSerializer(courses_left, many=True)
+
+            return JsonResponse(serializer.data, safe=False, status=200)
+        
+        else:
+            courses = Course.objects.all()
+            serializer = CourseSerializer(courses)
+            return JsonResponse(serializer.data, safe=False, status=200)
 
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
@@ -121,3 +146,33 @@ class UserDataView(APIView):
         }
 
         return JsonResponse(user_data, status=200)
+    
+class EnrollView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        data = json.loads(request.body)
+        user = request.user
+        course_id = data.get('course_id')
+
+        print(f'Data u enrollu:', data)
+        print(f'User {user.id} wants to enroll at {course_id}')
+
+        #return JsonResponse({'success': True, 'message': "Proslo."}, status=200)
+    
+        # Get the current student's record
+        student = get_object_or_404(Student, user=user)
+
+        # Get the course object
+        course = get_object_or_404(Course, id=course_id)
+
+        # Create the enrollment
+        enrollment, created = Enrollment.objects.get_or_create(student=student, course=course)
+
+        if created:
+            # Enrollment was created successfully
+            return JsonResponse({'success': True, 'message': "Successfully enrolled"}, status=200)
+        else:
+            # Enrollment already exists
+            return JsonResponse({'success': False, 'message': "Enrollment exists"}, status=401)

@@ -47,7 +47,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const data = await response.json();
       console.log("Data u Contextu:", data);
       setUserData(data);
-      console.log("Data u varijabli contexta:", data);
+      console.log("Data u varijabli contexta:", userData);
 
     } catch (err) {
       console.error(err);

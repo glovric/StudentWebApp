@@ -7,6 +7,9 @@ class Course(models.Model):
 
     name = models.CharField(max_length=100)
     points = models.IntegerField()
+    image_url = models.CharField(max_length=2048, default=None)
+    main_instructor = models.ForeignKey('Teacher', on_delete=models.SET_NULL, null=True, blank=True, related_name='main_courses')
+    additional_instructors = models.ManyToManyField('Teacher', blank=True, related_name='additional_courses')
 
     def __str__(self):
         return f'{self.name}'
@@ -20,7 +23,7 @@ class Student(models.Model):
     academic_id = models.CharField(max_length=8, unique=True)
 
     def __str__(self):
-        return f'Student {self.user.username}'
+        return f'{self.user.first_name} {self.user.last_name}'
 
     class Meta:
         db_table = 'students'
@@ -37,6 +40,18 @@ class Teacher(models.Model):
 
     class Meta:
         db_table = 'teachers'
+
+class Enrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    enrollment_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('student', 'course')  # Ensure a student can't enroll in the same course twice
+        db_table = 'enrollments'
+
+    def __str__(self):
+        return f'{self.student} enrolled in {self.course}'
 
 @receiver(post_delete, sender=Student)
 def delete_user_on_student_delete(sender, instance, **kwargs):

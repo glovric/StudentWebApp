@@ -1,5 +1,4 @@
-@import "components/TestComponent.scss";
-@import "components/FetchComponent.scss";
+@import "components/StudentDashboardComponent.scss";
 @import "components/Navbar.scss";
 
 @import "pages/HomePage.scss";
@@ -12,4 +11,24 @@
     margin: 0 auto; /* Horizontally center */
     background-color: $light-gray; //rgb(236, 236, 236);
     font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+button {
+    background-color: $secondary-color-gold; /* Bootstrap primary color */
+    color: $primary-color-green;              /* Text color */
+    border: none;              /* No border */
+    padding: 10px 20px;        /* Vertical and horizontal padding */
+    font-size: 16px;           /* Font size */
+    border-radius: 5px;        /* Rounded corners */
+    cursor: pointer;           /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+button:hover {
+    background-color: #82744b; /* Darker shade on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Reset lift on click */
+    background-color: $secondary-color-gold; /* Even darker shade on click */
 }

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import myImage from '../assets/fakz_icon.jpg';
+import { useUser } from "../contexts/UserContext";
+
 
 function Navbar() {
+
+    const { userData } = useUser();
 
     return (
 
@@ -19,9 +23,16 @@ function Navbar() {
                 <li>
                     <Link to="/register">Register</Link>
                 </li>
-                <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                </li>
+                {userData?.user_type === "teacher" && (
+                    <li>
+                        <Link to="/dashboard">Teacher Dashboard</Link>
+                    </li>
+                )}
+                {userData?.user_type === "student" && (
+                    <li>
+                        <Link to="/dashboard">Student Dashboard</Link>
+                    </li>
+                )}
             </ul>
         </nav>
 

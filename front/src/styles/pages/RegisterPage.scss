@@ -61,26 +61,5 @@
         opacity: 1;
         transform: translateY(0);
     }
-
-    button {
-        background-color: $secondary-color-gold; /* Bootstrap primary color */
-        color: $primary-color-green;              /* Text color */
-        border: none;              /* No border */
-        padding: 10px 20px;        /* Vertical and horizontal padding */
-        font-size: 16px;           /* Font size */
-        border-radius: 5px;        /* Rounded corners */
-        cursor: pointer;           /* Pointer on hover */
-        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
-        margin: 10px 0;
-    }
-    
-    button:hover {
-        background-color: #82744b; /* Darker shade on hover */
-    }
-    
-    button:active {
-        transform: translateY(0); /* Reset lift on click */
-        background-color: $secondary-color-gold; /* Even darker shade on click */
-    }
     
 }
