@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react';
 import { getJWT } from '../tokens/Tokens';
 
 type Student = {
-    username: string;
-    email: string;
+    id: number;
+    name: string;
     academic_id: string,
-    user_id: number
+}
+
+type Course = {
+    course_id: number;
+    course_name: string;
+    enrolled_students: Student[];
 }
 
 function TeacherDashboardComponent() {
 
-    const [students, setStudents] = useState<Student[] | []>([]);
+    const [courses, setCourses] = useState<Course[] | []>([]);
 
     const getPermission = async () => {
         
@@ -19,7 +24,7 @@ function TeacherDashboardComponent() {
             const token = getJWT().access;
 
             // Send request to /dashboard
-            const response = await fetch('http://localhost:8000/dashboard/', {
+            const response = await fetch('http://localhost:8000/courses/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +38,7 @@ function TeacherDashboardComponent() {
             // If response is ok (user exists), return JWT token
             if (response.ok) {
                 console.log("Response u Dashboardu:", result);
-                setStudents(result);
+                setCourses(result);
             } else {
                 console.log("Dashboard failed:", result);
             }
@@ -49,19 +54,39 @@ function TeacherDashboardComponent() {
     }, []);
 
     return(
-        <div>
+        <div className='teacher-dashboard'>
             Teacher component.
-            {students ? (
-                students.length > 0 ? (
-                    <ul>
-                        {students.map((student, index) => (
-                            <li key={index}>
-                                {student.user_id} - {student.email} - {student.username}
-                            </li>
-                        ))}
-                    </ul>
+            {courses ? (
+                courses.length > 0 ? (
+                    courses.map((course) => (
+                        <div key={course.course_id}>
+                            <h3>{course.course_name}</h3>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Academic ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {course.enrolled_students.length > 0 ? (
+                                        course.enrolled_students.map((student) => (
+                                            <tr key={student.id}>
+                                                <td>{student.name}</td>
+                                                <td>{student.academic_id}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td>No students enrolled.</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    ))
                 ) : (
-                    <p>No students available.</p>
+                    <p>No courses available.</p>
                 )
             ) : (
                 <p>Loading students...</p>

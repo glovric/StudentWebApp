@@ -9,29 +9,87 @@ from django.contrib.auth.models import User
 import json
 from random import choices
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
+
+def get_user_type(user_id):
+
+    try:
+        # Check if the user_id belongs to a Student
+        student = Student.objects.get(user_id=user_id)
+        return 'student', student
+    except Student.DoesNotExist:
+        pass  # Continue to check for Teacher
+
+    try:
+        # Check if the user_id belongs to a Teacher
+        teacher = Teacher.objects.get(user_id=user_id)
+        return 'teacher', teacher
+    except Teacher.DoesNotExist:
+        pass  # If not found in either model
+
+    # If neither is found
+    return 'unknown', None
 
 class CourseView(APIView):
 
     def get(self, request):
 
         if request.user:
+            # Get user ID
             user_id = request.user.id
-             # Retrieve all courses
-            courses = Course.objects.all()
+            # Check if user is teacher or student
+            user_type, user = get_user_type(user_id)
+
+            print(f'We got a user: {user}')
+
+            if user_type == 'student':
+                # Retrieve all courses
+                courses = Course.objects.all()
+                
+                # Get enrollments for the current user
+                user_enrollments = Enrollment.objects.filter(student__user__id=user_id)
+                enrolled_course_ids = user_enrollments.values_list('course_id', flat=True)
+
+                courses_left = []
+                for course in courses:
+                    # Skip courses the user is already enrolled in
+                    if course.id not in enrolled_course_ids:
+                        courses_left.append(course)
+
+                serializer = CourseSerializer(courses_left, many=True)
+
+                return JsonResponse(serializer.data, safe=False, status=200)
             
-            # Get enrollments for the current user
-            user_enrollments = Enrollment.objects.filter(student__user__id=user_id)
-            enrolled_course_ids = user_enrollments.values_list('course_id', flat=True)
+            elif user_type == 'teacher':
 
-            courses_left = []
-            for course in courses:
-                # Skip courses the user is already enrolled in
-                if course.id not in enrolled_course_ids:
-                    courses_left.append(course)
+                teacher: Teacher = user
 
-            serializer = CourseSerializer(courses_left, many=True)
+                courses = Course.objects.filter(
+                            Q(main_instructor_id=teacher.id) | Q(additional_instructors__id=teacher.id)
+                          )
+                
+                courses_with_students = []
 
-            return JsonResponse(serializer.data, safe=False, status=200)
+                for course in courses:
+                    # Retrieve students enrolled in the specific course
+                    enrolled_students = Enrollment.objects.filter(course=course).select_related('student')
+                    
+                    # Create a list of student data (you can customize this to include necessary fields)
+                    student_data = [{
+                        'id': enrollment.student.id,
+                        'name': str(enrollment.student),  # or any other representation
+                        'academic_id': enrollment.student.academic_id,
+                    } for enrollment in enrolled_students]
+
+                    # Append course info with students
+                    courses_with_students.append({
+                        'course_id': course.id,
+                        'course_name': course.name,
+                        'enrolled_students': student_data,
+                    })
+
+                # Return the courses with enrolled students as JSON response
+                return JsonResponse(courses_with_students, safe=False, status=200)
         
         else:
             courses = Course.objects.all()

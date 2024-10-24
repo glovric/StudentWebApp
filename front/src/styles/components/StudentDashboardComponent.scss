@@ -1,21 +1,41 @@
 @import "../variables.scss";
 
-.course-container {
-    display: flex;
-    flex-wrap: wrap;
-    //justify-content: left; /* or space-around */
-    padding: 20px;
-}
+.student-dashboard {
 
-.course-card {
-    flex: 0 0 calc(33.33% - 10px); /* 3 divs per row with space */
-    box-sizing: border-box;
-    margin-right: 10px;
-    margin-bottom: 20px; /* spacing between rows */
-    padding: 15px;
-    border: 2px solid $secondary-color-gold;
-    border-radius: 5px;
-    text-align: center;
-    background-color: $primary-color-green;
-    color: $secondary-color-gold;
+    .course-container {
+        display: flex;
+        flex-wrap: wrap;
+        //justify-content: left; /* or space-around */
+        padding: 20px;
+    }
+    
+    .course-card {
+        flex: 0 0 calc(33.33% - 10px); /* 3 divs per row with space */
+        box-sizing: border-box;
+        margin-right: 10px;
+        margin-bottom: 20px; /* spacing between rows */
+        padding: 15px;
+        border: 2px solid $secondary-color-gold;
+        border-radius: 5px;
+        text-align: center;
+        background-color: $primary-color-green;
+        color: $secondary-color-gold;
+
+        img {
+            width: 100%;
+            height: auto; /* Maintains the aspect ratio */
+        }
+    }
+
+    .popup {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        z-index: 1000;
+        transition: opacity 0.8s ease;
+    }
 }

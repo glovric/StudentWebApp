@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getJWT, getCSRFToken } from '../tokens/Tokens';
-import { useNavigate } from 'react-router-dom';
 
 type Course = {
     id: number;
@@ -15,9 +14,11 @@ function StudentDashboardComponent() {
 
     const [courses, setCourses] = useState<Course[] | null>(null);
 
-    const navigate = useNavigate();
+    const [popupVisible, setPopupVisible] = useState<boolean>(false);
+    const [popupMessage, setPopupMessage] = useState<string>('');
+    const [popupOpacity, setPopupOpacity] = useState<number>(1); // New state for opacity
 
-    const enrollToCourse = async (courseID: number) => {
+    const enrollToCourse = async (courseID: number, courseName: string) => {
 
         try {
 
@@ -41,6 +42,14 @@ function StudentDashboardComponent() {
             if (response.ok) {
                 console.log("Successfully enrolled in course:", result);
                 // Optionally, refresh the course list or show a success message
+                setPopupMessage(`You have successfully enrolled in course: ${courseName}`);
+                setPopupVisible(true);
+                setPopupOpacity(1); // Reset opacity to 1
+                setTimeout(() => {
+                    // Start fading out
+                    setPopupOpacity(0);
+                    setTimeout(() => setPopupVisible(false), 300); // Hide after fade-out
+                }, 3000); // Show for 3 seconds
                 fetchCourses()
             } else {
                 console.log("Enrollment failed:", result);
@@ -87,7 +96,7 @@ function StudentDashboardComponent() {
     }, []);
 
     return(
-        <div>
+        <div className='student-dashboard'>
             Student component.
             {courses ? (
                 courses.length > 0 ? (
@@ -99,7 +108,7 @@ function StudentDashboardComponent() {
                                 <p>Course instructor: {course.main_instructor ? course.main_instructor : "Unknown"}</p>
                                 <p>Course associates: {course.additional_instructors ? course.additional_instructors : "Unknown"}</p>
                                 <img src={course.image_url}></img>
-                                <button onClick={() => enrollToCourse(course.id)}>Enroll</button>
+                                <button onClick={() => enrollToCourse(course.id, course.name)}>Enroll</button>
                             </div>
                         ))}
                     </div>
@@ -109,6 +118,13 @@ function StudentDashboardComponent() {
             ) : (
                 <p>Loading courses...</p>
             )}
+
+            {popupVisible && (
+                <div className="popup" style={{ opacity: popupOpacity }}>
+                    {popupMessage}
+                </div>
+            )}
+
         </div>
     )
 

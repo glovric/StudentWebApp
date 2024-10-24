@@ -1,16 +1,53 @@
 from django.contrib import admin
-from .models import Course, Student, Teacher, Enrollment
+from .models import Course, Student, Teacher, Enrollment, Associate
 from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
+
+"""class EnrollmentInline(admin.StackedInline):
+    model = Enrollment
+    extra = 1  # Number of empty forms to display
+
+class AssociateInline(admin.StackedInline):
+    model = Associate
+    extra = 1  # Number of empty forms to display"""
 
 class CourseForm(forms.ModelForm):
+    students = forms.ModelMultipleChoiceField(
+        queryset=Student.objects.all(),
+        widget=FilteredSelectMultiple("Students", is_stacked=False, attrs={'class': 'filteredselectmultiple'}),
+        required=False,
+        label=''
+    )
+
+    associates = forms.ModelMultipleChoiceField(
+        queryset=Teacher.objects.all(),
+        widget=FilteredSelectMultiple("Associates", is_stacked=False),
+        required=False,
+        label=''
+    )
+
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ['name', 'points', 'image_url', 'coordinator', 'students', 'associates']
+
+    """def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:  # If the instance already exists
+            self.fields['students'].initial = self.instance.students.all()  # Set initial values
+
+    def save(self, commit=True):
+        course = super().save(commit)
+        # Clear existing enrollments
+        Enrollment.objects.filter(course=course).delete()
+        # Create new enrollments
+        for student in self.cleaned_data['students']:
+            Enrollment.objects.create(course=course, student=student)
+        return course"""
 
 class CourseAdmin(admin.ModelAdmin):
     form = CourseForm
-    list_display = ('id', 'name', 'points', 'main_instructor_id')
-    search_fields = ('name',)
+    list_display = ('id', 'name', 'points', 'coordinator')
+    #inlines = [EnrollmentInline, AssociateInline]
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('academic_id', 'get_email', 'get_first_name', 'get_last_name')  # Fields to display in the list view
@@ -72,8 +109,20 @@ class EnrollmentAdmin(admin.ModelAdmin):
     
     #course_id.short_description = 'Course ID'  # Set a human-readable name for the column
 
+class AssociateAdmin(admin.ModelAdmin):
+    list_display = ('course_id', 'course', 'teacher_id')  # Add the method here
+
+    def teacher_id(self, obj):
+        return obj.teacher.academic_id
+
+    def course_id(self, obj):
+        return obj.course.id  # Return the ID of the related course
+    
+    #course_id.short_description = 'Course ID'  # Set a human-readable name for the column
+
 # Register your models here.
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Enrollment, EnrollmentAdmin)
+admin.site.register(Associate, AssociateAdmin)
