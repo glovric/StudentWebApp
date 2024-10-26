@@ -11,7 +11,7 @@ from random import choices
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
-def get_user_type(user_id):
+def get_user_type(user_id: int):
 
     try:
         # Check if the user_id belongs to a Student
@@ -27,74 +27,34 @@ def get_user_type(user_id):
     except Teacher.DoesNotExist:
         pass  # If not found in either model
 
-    # If neither is found
-    return 'unknown', None
+    try:
+        user = User.objects.get(id=user_id)
+        return 'admin', user
+    except User.DoesNotExist:
+        return 'unknown', None
+
+def get_courses_for_teacher(teacher: Teacher):
+    # Fetch courses where the teacher is a coordinator or an associate
+    courses = Course.objects.filter(
+        Q(coordinator=teacher) | Q(associates=teacher)
+    ).distinct()  # Use distinct to avoid duplicates
+    return courses
+
+def get_courses_for_student(student: Student):
+    # Get all courses the student is enrolled in
+    enrolled_courses = student.courses.all()
+
+    # Retrieve all courses and exclude those the student is already enrolled in
+    courses_left = Course.objects.exclude(id__in=enrolled_courses.values_list('id', flat=True))
+
+    return courses_left
 
 class CourseView(APIView):
 
     def get(self, request):
-
-        if request.user:
-            # Get user ID
-            user_id = request.user.id
-            # Check if user is teacher or student
-            user_type, user = get_user_type(user_id)
-
-            print(f'We got a user: {user}')
-
-            if user_type == 'student':
-                # Retrieve all courses
-                courses = Course.objects.all()
-                
-                # Get enrollments for the current user
-                user_enrollments = Enrollment.objects.filter(student__user__id=user_id)
-                enrolled_course_ids = user_enrollments.values_list('course_id', flat=True)
-
-                courses_left = []
-                for course in courses:
-                    # Skip courses the user is already enrolled in
-                    if course.id not in enrolled_course_ids:
-                        courses_left.append(course)
-
-                serializer = CourseSerializer(courses_left, many=True)
-
-                return JsonResponse(serializer.data, safe=False, status=200)
-            
-            elif user_type == 'teacher':
-
-                teacher: Teacher = user
-
-                courses = Course.objects.filter(
-                            Q(main_instructor_id=teacher.id) | Q(additional_instructors__id=teacher.id)
-                          )
-                
-                courses_with_students = []
-
-                for course in courses:
-                    # Retrieve students enrolled in the specific course
-                    enrolled_students = Enrollment.objects.filter(course=course).select_related('student')
-                    
-                    # Create a list of student data (you can customize this to include necessary fields)
-                    student_data = [{
-                        'id': enrollment.student.id,
-                        'name': str(enrollment.student),  # or any other representation
-                        'academic_id': enrollment.student.academic_id,
-                    } for enrollment in enrolled_students]
-
-                    # Append course info with students
-                    courses_with_students.append({
-                        'course_id': course.id,
-                        'course_name': course.name,
-                        'enrolled_students': student_data,
-                    })
-
-                # Return the courses with enrolled students as JSON response
-                return JsonResponse(courses_with_students, safe=False, status=200)
-        
-        else:
-            courses = Course.objects.all()
-            serializer = CourseSerializer(courses)
-            return JsonResponse(serializer.data, safe=False, status=200)
+        courses = Course.objects.all()
+        serializer = CourseSerializer(courses)
+        return JsonResponse(serializer.data, safe=False, status=200)
 
 class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
@@ -186,12 +146,7 @@ class UserDataView(APIView):
         except User.DoesNotExist:
             return JsonResponse({'message': 'User does not exist.'}, status=404)
         
-        if Student.objects.filter(user_id=user_id).exists():
-            user_type = 'student'
-        elif Teacher.objects.filter(user_id=user_id).exists():
-            user_type = 'teacher'
-        else:
-            user_type = 'admin'
+        user_type, _ = get_user_type(user_id)
 
         # Prepare user data to return
         user_data = {
@@ -234,3 +189,127 @@ class EnrollView(APIView):
         else:
             # Enrollment already exists
             return JsonResponse({'success': False, 'message': "Enrollment exists"}, status=401)
+        
+    def delete(self, request, enrollment_id):
+        try:
+            enrollment = Enrollment.objects.get(id=enrollment_id)
+            enrollment.delete()
+            return JsonResponse({}, status=204)  # Empty response body  # No content returned on successful deletion
+        except Enrollment.DoesNotExist:
+            return JsonResponse({"detail": "Enrollment not found."}, status=404)
+        
+class TeacherDashboardView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+
+        user_id = request.user.id
+        # Check if user is teacher or student
+        user_type, user = get_user_type(user_id)
+
+        print(f'We got a user: {user}')
+        
+        if user_type == 'teacher':
+
+            teacher: Teacher = user
+
+            # Fetch courses for the teacher
+            courses = get_courses_for_teacher(teacher)
+            # Prefetch related students
+            courses_with_students = courses.prefetch_related('students')
+
+            # Build the response data
+            courses_with_students = courses.prefetch_related('students', 'enrollment_set')
+
+            # Build the response data
+            courses_with_students_json = [{
+                'course_id': course.id,
+                'course_name': course.name,
+                'enrolled_students': [{
+                    'id': student.id,
+                    'name': str(student),  # or any other representation
+                    'academic_id': student.academic_id,
+                    'enrollment_id': enrollment.id,  # Assuming you can get this from a related enrollment
+                } for student in course.students.all()
+                for enrollment in Enrollment.objects.filter(student=student, course=course)],  # Get enrollment for each student
+            } for course in courses_with_students]
+
+            return JsonResponse(courses_with_students_json, safe=False, status=200)
+        
+        else:
+            return JsonResponse({'message': 'Failed in TeacherDashboardView.'}, status=400)
+        
+class StudentDashboardView(APIView):
+    
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        if request.path.endswith('/available/'):
+            return self.get_available_courses(request)
+        elif request.path.endswith('/courses/'):
+            return self.get_student_courses(request)
+        else:
+            return JsonResponse({'error': 'Invalid endpoint.'}, status=404)
+        
+    def get_available_courses(self, request):
+
+        if request.method == "GET":
+
+            # Get user ID
+            user_id = request.user.id
+            # Check if user is teacher or student
+            user_type, user = get_user_type(user_id)
+
+            print(f'We got a user: {user}')
+
+            if user_type == 'student':
+
+                student: Student = user
+
+                courses = get_courses_for_student(student)
+
+                serializer = CourseSerializer(courses, many=True)
+
+                return JsonResponse(serializer.data, safe=False, status=200)
+            
+            else:
+                return JsonResponse({'message': 'Failed in StudentDashboardView.'}, status=400)
+            
+    def get_student_courses(self, request):
+
+         # Get user ID
+            user_id = request.user.id
+            # Check if user is teacher or student
+            user_type, user = get_user_type(user_id)
+
+            print(f'We got a user: {user}')
+
+            if user_type == 'student':
+
+                student: Student = user
+                
+                # Prefetch courses and their enrollments
+                student_with_courses = Student.objects.prefetch_related('courses', 'courses__enrollment_set').get(id=student.id)
+
+                # Prepare the response data
+                student_courses = []
+                for course in student_with_courses.courses.all():
+                    # Get the enrollment for the specific student and course
+                    enrollment = course.enrollment_set.filter(student=student).first()
+                    enrollment_id = enrollment.id if enrollment else None
+                    
+                    # Serialize the course data
+                    course_data = CourseSerializer(course).data
+                    
+                    # Add enrollment_id to the course data
+                    course_data['enrollment_id'] = enrollment_id
+                    
+                    student_courses.append(course_data)
+
+                return JsonResponse(student_courses, safe=False, status=200)
+            
+            else:
+                return JsonResponse({'message': 'Failed in StudentDashboardView.'}, status=400)
+
+                

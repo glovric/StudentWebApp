@@ -5,6 +5,7 @@ type Student = {
     id: number;
     name: string;
     academic_id: string,
+    enrollment_id: number
 }
 
 type Course = {
@@ -24,12 +25,11 @@ function TeacherDashboardComponent() {
             const token = getJWT().access;
 
             // Send request to /dashboard
-            const response = await fetch('http://localhost:8000/courses/', {
+            const response = await fetch('http://localhost:8000/teacher-dashboard/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
-
                 },
             });
 
@@ -49,6 +49,34 @@ function TeacherDashboardComponent() {
 
     }
 
+    const deleteFromCourse = async (enrollmentId: number) => {
+
+        try {
+
+            const token = getJWT().access;
+
+            // Send request to /dashboard
+            const response = await fetch(`http://localhost:8000/delete-enroll/${enrollmentId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            // If response is ok (user exists), return JWT token
+            if (response.status == 204) {
+                console.log("Izbrisan enrollment");
+                getPermission();
+            } else {
+                console.log("Brisanje enrollmenta failed.");
+            }
+
+        } catch (error) {
+            console.log(`An error occurred: ${(error as Error).message}`);
+        }
+    }
+
     useEffect(() => {
         getPermission();
     }, []);
@@ -66,6 +94,7 @@ function TeacherDashboardComponent() {
                                     <tr>
                                         <th>Student Name</th>
                                         <th>Academic ID</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,6 +103,7 @@ function TeacherDashboardComponent() {
                                             <tr key={student.id}>
                                                 <td>{student.name}</td>
                                                 <td>{student.academic_id}</td>
+                                                <td><button onClick={() => deleteFromCourse(student.enrollment_id)}>Delete from course</button></td>
                                             </tr>
                                         ))
                                     ) : (

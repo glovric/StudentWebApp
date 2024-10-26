@@ -15,18 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from api.views import CourseView, ProtectedView, DashboardView, UserDataView, EnrollView, register, get_csrf_token
+from api.views import (CourseView, ProtectedView, DashboardView, UserDataView, EnrollView, 
+                       register, get_csrf_token, TeacherDashboardView, StudentDashboardView)
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', CourseView.as_view(), name='course-list-create'),
-    path('csrf-token/', get_csrf_token, name='get_csrf_token'),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('csrf-token/', get_csrf_token, name='get-csrf-token'),
+    path('login/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
     path('register/', register, name='register'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('protected/', ProtectedView.as_view(), name='protected_view'),
-    path('dashboard/', DashboardView.as_view(), name='dashboard_view'),
-    path('user_data/', UserDataView.as_view(), name='user_data_view'),
-    path('enroll/', EnrollView.as_view(), name='enroll')
+    path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
+    path('protected/', ProtectedView.as_view(), name='protected-view'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard-view'),
+    path('user-data/', UserDataView.as_view(), name='user-data-view'),
+    path('enroll/', EnrollView.as_view(), name='enroll'),
+    path('delete-enroll/<int:enrollment_id>/', EnrollView.as_view(), name='delete-enroll'),  # For DELETE requests
+    path('teacher-dashboard/', TeacherDashboardView.as_view(), name='teacher-dashboard'),
+    path('student-dashboard/available/', StudentDashboardView.as_view(), name='student-dashboard'),
+    path('student-dashboard/courses/', StudentDashboardView.as_view(), name='student-dashboard')
 ]

@@ -31,7 +31,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     try {
 
-      const response = await fetch('http://localhost:8000/user_data/', {
+      const response = await fetch('http://localhost:8000/user-data/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

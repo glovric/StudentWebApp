@@ -3,22 +3,22 @@ from .models import Course
 
 class CourseSerializer(serializers.ModelSerializer):
     
-    main_instructor = serializers.SerializerMethodField()
-    additional_instructors = serializers.SerializerMethodField()
+    coordinator = serializers.SerializerMethodField()
+    associates = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = ['id', 'name', 'points', 'image_url', 'main_instructor', 'additional_instructors']  # Adjust fields as needed
+        fields = ['id', 'name', 'points', 'image_url', 'coordinator', 'associates']  # Adjust fields as needed
 
-    def get_main_instructor(self, obj):
-        if obj.main_instructor and obj.main_instructor.user:
-            return f"{obj.main_instructor.academic_title} {obj.main_instructor.user.first_name} {obj.main_instructor.user.last_name}"
+    def get_coordinator(self, obj):
+        if obj.coordinator and obj.coordinator.user:
+            return f"{obj.coordinator.academic_title} {obj.coordinator.user.first_name} {obj.coordinator.user.last_name}"
         return None
     
-    def get_additional_instructors(self, obj):
+    def get_associates(self, obj):
         lista = [
-            f"{instructor.academic_title} {instructor.user.first_name} {instructor.user.last_name}"
-            for instructor in obj.additional_instructors.all() if instructor.user
+            f"{associate.academic_title} {associate.user.first_name} {associate.user.last_name}"
+            for associate in obj.associates.all() if associate.user
         ]
         return ", ".join(lista)
         
