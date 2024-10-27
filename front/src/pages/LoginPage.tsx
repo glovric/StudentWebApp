@@ -1,8 +1,8 @@
 import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getJWT, refreshAccessToken, setJWT, removeJWT } from '../tokens/Tokens';
-import { useUser } from "../contexts/UserContext";
-import { useElementOnScreen } from "../hooks/useElementOnScreen";
+import { getJWT, refreshAccessToken, setJWT, removeJWT } from '../misc/Tokens';
+import { useUser } from "../misc/UserContext";
+import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 
 function LoginPage() {

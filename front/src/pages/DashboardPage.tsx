@@ -1,13 +1,6 @@
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../misc/UserContext";
 import StudentDashboardComponent from '../components/StudentDashboardComponent';
-import TeacherDashboardComponent from '../components/TeacherDashboardComponent';
-
-type Student = {
-    username: string;
-    email: string;
-    academic_id: string,
-    user_id: number
-}
+import TeacherDashboardPage from "./TeacherDashboardPage";
 
 function DashboardPage() {
 
@@ -17,7 +10,7 @@ function DashboardPage() {
         return <StudentDashboardComponent />;
     }
     else if (userData?.user_type === "teacher") {
-        return <TeacherDashboardComponent/>
+        return <TeacherDashboardPage/>
     }
     else {
         return(

@@ -229,8 +229,8 @@ class TeacherDashboardView(APIView):
             all_students = Student.objects.all()
             # Build the response data
             courses_with_students_json = [{
-                'course_id': course.id,
-                'course_name': course.name,
+                'id': course.id,
+                'name': course.name,
 
                 'enrolled_students': [{
                     'id': student.id,

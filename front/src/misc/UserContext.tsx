@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode, Dispatch, SetStateAction, FC } from 'react';
-import { getJWT } from '../tokens/Tokens';
+import { getJWT } from '../misc/Tokens';
 
 // Define types for user data and context
 type UserData = {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import myImage from '../assets/fakz_icon.jpg';
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../misc/UserContext";
 
 
 function Navbar() {

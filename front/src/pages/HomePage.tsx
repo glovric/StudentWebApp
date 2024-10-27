@@ -1,10 +1,10 @@
-import { useUser } from "../contexts/UserContext";
+import { useUser } from "../misc/UserContext";
 import campus from "../assets/campus.jpg";
 import courses from "../assets/courses.jpg";
 import professors from "../assets/professors.png";
 import research from "../assets/research.jpg";
 import uni from "../assets/uni.jpg";
-import { useElementOnScreen } from "../hooks/useElementOnScreen";
+import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 function HomePage() {
 

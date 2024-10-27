@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getJWT } from '../tokens/Tokens';
+import { getJWT } from '../misc/Tokens';
 
 type AvailableCourse = {
     id: number;

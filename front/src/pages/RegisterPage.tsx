@@ -1,7 +1,7 @@
 import { FormEvent, ChangeEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
-import { useElementOnScreen } from "../hooks/useElementOnScreen";
+import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 
 function RegisterPage() {
