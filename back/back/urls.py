@@ -32,6 +32,6 @@ urlpatterns = [
     path('enroll/', EnrollView.as_view(), name='enroll'),
     path('delete-enroll/<int:enrollment_id>/', EnrollView.as_view(), name='delete-enroll'),  # For DELETE requests
     path('teacher-dashboard/', TeacherDashboardView.as_view(), name='teacher-dashboard'),
-    path('student-dashboard/available/', StudentDashboardView.as_view(), name='student-dashboard'),
-    path('student-dashboard/courses/', StudentDashboardView.as_view(), name='student-dashboard')
+    path('student-dashboard/available-courses/', StudentDashboardView.as_view(), name='student-dashboard'),
+    path('student-dashboard/my-courses/', StudentDashboardView.as_view(), name='student-dashboard')
 ]

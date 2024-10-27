@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getJWT, getCSRFToken } from '../tokens/Tokens';
+import { getJWT } from '../tokens/Tokens';
 
 type AvailableCourse = {
     id: number;
@@ -34,7 +34,7 @@ function StudentDashboardComponent() {
         try {
 
             const token = getJWT().access;
-            const csrfToken = await getCSRFToken();
+            //const csrfToken = await getCSRFToken();
 
             // Send request to enroll in the course
             const response = await fetch('http://localhost:8000/enroll/', {
@@ -42,9 +42,9 @@ function StudentDashboardComponent() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
-                    'X-CSRFToken': csrfToken,
+                    //'X-CSRFToken': csrfToken,
                 },
-                credentials: 'include',
+                //credentials: 'include',
                 body: JSON.stringify({ course_id: courseID }),
             });
 
@@ -113,17 +113,14 @@ function StudentDashboardComponent() {
         try {
 
             const token = getJWT().access;
-            const csrfToken = await getCSRFToken();
 
             // Send request to /dashboard
-            const response = await fetch('http://localhost:8000/student-dashboard/available/', {
+            const response = await fetch('http://localhost:8000/student-dashboard/available-courses/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
-                    //'X-CSRFToken': csrfToken,
                 },
-                //credentials: 'include',
             });
 
             const result = await response.json();
@@ -147,17 +144,13 @@ function StudentDashboardComponent() {
         try {
 
             const token = getJWT().access;
-            const csrfToken = await getCSRFToken();
-
             // Send request to /dashboard
-            const response = await fetch('http://localhost:8000/student-dashboard/courses/', {
+            const response = await fetch('http://localhost:8000/student-dashboard/my-courses/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
-                    //'X-CSRFToken': csrfToken,
                 },
-                //credentials: 'include',
             });
 
             const result = await response.json();

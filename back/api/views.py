@@ -168,6 +168,10 @@ class EnrollView(APIView):
         data = json.loads(request.body)
         user = request.user
         course_id = data.get('course_id')
+        try:
+            student_id = data.get('student_id')
+        except:
+            print("No student id!")
 
         print(f'Data u enrollu:', data)
         print(f'User {user.id} wants to enroll at {course_id}')
@@ -175,7 +179,10 @@ class EnrollView(APIView):
         #return JsonResponse({'success': True, 'message': "Proslo."}, status=200)
     
         # Get the current student's record
-        student = get_object_or_404(Student, user=user)
+        if student_id:
+            student = get_object_or_404(Student, id=student_id)
+        else:
+            student = get_object_or_404(Student, user=user)
 
         # Get the course object
         course = get_object_or_404(Course, id=course_id)
@@ -219,13 +226,12 @@ class TeacherDashboardView(APIView):
             # Prefetch related students
             courses_with_students = courses.prefetch_related('students')
 
-            # Build the response data
-            courses_with_students = courses.prefetch_related('students', 'enrollment_set')
-
+            all_students = Student.objects.all()
             # Build the response data
             courses_with_students_json = [{
                 'course_id': course.id,
                 'course_name': course.name,
+
                 'enrolled_students': [{
                     'id': student.id,
                     'name': str(student),  # or any other representation
@@ -233,6 +239,15 @@ class TeacherDashboardView(APIView):
                     'enrollment_id': enrollment.id,  # Assuming you can get this from a related enrollment
                 } for student in course.students.all()
                 for enrollment in Enrollment.objects.filter(student=student, course=course)],  # Get enrollment for each student
+
+                'not_enrolled_students': [
+                    {
+                        'id': student.id,
+                        'name': str(student),  # or any other representation
+                        'academic_id': student.academic_id,
+                    } for student in all_students
+                    if student.id not in course.students.values_list('id', flat=True)
+                ],
             } for course in courses_with_students]
 
             return JsonResponse(courses_with_students_json, safe=False, status=200)
@@ -245,9 +260,9 @@ class StudentDashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        if request.path.endswith('/available/'):
+        if request.path.endswith('/available-courses/'):
             return self.get_available_courses(request)
-        elif request.path.endswith('/courses/'):
+        elif request.path.endswith('/my-courses/'):
             return self.get_student_courses(request)
         else:
             return JsonResponse({'error': 'Invalid endpoint.'}, status=404)

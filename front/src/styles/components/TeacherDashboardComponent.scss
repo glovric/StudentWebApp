@@ -39,4 +39,16 @@
         background-color: #f1f1f1; /* Slightly darker on hover */
     }
 
+    .popup {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 5px;
+        z-index: 1000;
+        transition: opacity 0.8s ease;
+    }
+
 }
