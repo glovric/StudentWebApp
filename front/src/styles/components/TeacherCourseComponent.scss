@@ -1,0 +1,44 @@
+@import "../variables.scss";
+
+.teacher-course {
+
+    border: 1px solid black;
+    margin: 0 0 40px 0;
+    background-color: $primary-color-green;
+    color: $secondary-color-gold;
+    border-radius: 3px;
+
+    h2 {
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse; /* Collapse borders for a cleaner look */
+        margin-top: 20px; /* Space above the table */
+        width: 100%; /* Set a width for the table */
+    }
+
+    /* Table headers and cells */
+    th, td {
+        border: 1px solid $secondary-color-gold; /* Border for cells */
+        padding: 10px; /* Padding inside cells */
+        text-align: left; /* Align text to the left */
+        width: 100%; /* Ensure each cell takes full width */
+    }
+
+    /* Ensure table rows take full width */
+    tr {
+        width: 100%; /* Ensure rows take the full width of the table */
+    }
+
+    /* Header styling */
+    th {
+        background-color: $primary-color-green /* Light background for header */
+    }
+
+    .enroll-div {
+        display: flex;
+        justify-content:space-between;
+        //align-items: center;
+    }
+}

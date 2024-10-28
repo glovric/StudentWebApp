@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getJWT } from '../misc/Tokens';
-import CourseComponent from '../components/CourseComponent';
+import TeacherCourseComponent from './TeacherCourseComponent';
 import type { Course } from '../misc/Types';
 
-function TeacherDashboardPage() {
+function TeacherDashboardComponent() {
     const [courses, setCourses] = useState<Course[]>([]);
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
-    const [popupOpacity, setPopupOpacity] = useState<number>(1); // New state for opacity
+    const [popupOpacity, setPopupOpacity] = useState<number>(1);
 
     const loadTeacherCourses = async () => {
         try {
@@ -34,7 +34,7 @@ function TeacherDashboardPage() {
         }
     };
 
-    const deleteFromCourse = async (enrollmentId: number, courseName: string) => {
+    const deleteFromCourse = async (enrollmentId: number, courseName: string, studentName: string) => {
         try {
             const token = getJWT().access;
 
@@ -47,8 +47,7 @@ function TeacherDashboardPage() {
             });
 
             if (response.status === 204) {
-                console.log("Enrollment deleted");
-                setPopupMessage(`You have successfully unenrolled from course: ${courseName}`);
+                setPopupMessage(`You have successfully deleted ${studentName} from course ${courseName}`);
                 setPopupVisible(true);
                 setPopupOpacity(1); // Reset opacity to 1
                 setTimeout(() => {
@@ -65,9 +64,7 @@ function TeacherDashboardPage() {
         }
     };
 
-    const handleEnrollStudent = async (courseID: number, studentID: number, courseName: string) => {
-
-        console.log(`Enrolling student ${studentID} in course ${courseID}`);
+    const handleEnrollStudent = async (courseID: number, courseName: string, studentID: number, studentName: string) => {
 
         try {
 
@@ -86,9 +83,8 @@ function TeacherDashboardPage() {
             const result = await response.json();
 
             if (response.ok) {
-                console.log("Successfully enrolled in course:", result);
                 // Optionally, refresh the course list or show a success message
-                setPopupMessage(`You have successfully enrolled in course: ${courseName}`);
+                setPopupMessage(`You have successfully enrolled  ${studentName} in course ${courseName}`);
                 setPopupVisible(true);
                 setPopupOpacity(1); // Reset opacity to 1
                 setTimeout(() => {
@@ -105,16 +101,17 @@ function TeacherDashboardPage() {
         }
     };
 
+    // Use loadTeacherCourses on component mount
     useEffect(() => {
         loadTeacherCourses();
     }, []);
 
     return (
         <div className='teacher-dashboard'>
-            Teacher component.
+            <h1>Your Courses</h1>
             {courses.length > 0 ? (
                 courses.map((course) => (
-                    <CourseComponent 
+                    <TeacherCourseComponent
                         key={course.id} 
                         course={course} 
                         deleteFromCourse={deleteFromCourse} 
@@ -134,4 +131,4 @@ function TeacherDashboardPage() {
     );
 }
 
-export default TeacherDashboardPage;
+export default TeacherDashboardComponent;
