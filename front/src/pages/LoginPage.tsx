@@ -22,40 +22,6 @@ function LoginPage() {
         return {username, password};
     }
 
-    // Testing JWT token
-    const handleProtected = async () => {
-
-        var accessToken = getJWT().access;
-
-        try {
-
-            const response = await fetch('http://localhost:8000/protected/', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`, // Include the JWT in the Authorization header
-                    'Content-Type': 'application/json', // Set the content type
-                },
-            });
-
-            if (response.status === 401) {
-                // If unauthorized, refresh the access token
-                accessToken = await refreshAccessToken();
-                if(accessToken) {console.log("Access token renewed.");}
-                return;
-            }
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log(result);
-
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     // Login handling
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
@@ -121,7 +87,6 @@ function LoginPage() {
                 </input>
 
                 <button type="submit">Submit</button>
-                <button onClick={handleProtected}>Test JWT token</button>
                 <button onClick={handleLogOut}>Log Out</button>
             </form>
 

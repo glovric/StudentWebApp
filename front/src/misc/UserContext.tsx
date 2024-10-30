@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode, Dispatch, SetStateAction, FC } from 'react';
-import { getJWT } from '../misc/Tokens';
+import { getJWT, refreshAccessToken } from '../misc/Tokens';
 
 // Define types for user data and context
 type UserData = {
@@ -39,15 +39,21 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         },
       });
 
+      if(response.status == 401) {
+        // Try refresh token
+        const newToken = await refreshAccessToken();
+        if(newToken) {
+          fetchUserData();
+        }
+      }
+
       if (!response.ok) {
         console.error('Failed to fetch user data in Context.');
         setUserData(null);
       }
 
       const data = await response.json();
-      console.log("Data u Contextu:", data);
       setUserData(data);
-      console.log("Data u varijabli contexta:", userData);
 
     } catch (err) {
       console.error(err);

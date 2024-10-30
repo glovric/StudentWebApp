@@ -33,6 +33,9 @@ function Navbar() {
                         <Link to="/dashboard">Student Dashboard</Link>
                     </li>
                 )}
+                <li>
+                    Hello {userData?.username ? userData?.username : 'guest'}
+                </li>
             </ul>
         </nav>
 

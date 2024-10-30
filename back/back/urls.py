@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from api.views import (CourseView, ProtectedView, DashboardView, UserDataView, EnrollView, 
-                       register, get_csrf_token, TeacherDashboardView, StudentDashboardView)
+from django.urls import path
+from api.views import (CourseView, UserDataView, EnrollView, 
+                       RegisterView, TeacherDashboardView, StudentDashboardView)
+from api.helpers import get_csrf_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -24,10 +25,8 @@ urlpatterns = [
     path('courses/', CourseView.as_view(), name='course-list-create'),
     path('csrf-token/', get_csrf_token, name='get-csrf-token'),
     path('login/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
-    path('register/', register, name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
-    path('protected/', ProtectedView.as_view(), name='protected-view'),
-    path('dashboard/', DashboardView.as_view(), name='dashboard-view'),
     path('user-data/', UserDataView.as_view(), name='user-data-view'),
     path('enroll/', EnrollView.as_view(), name='enroll'),
     path('delete-enroll/<int:enrollment_id>/', EnrollView.as_view(), name='delete-enroll'),  # For DELETE requests

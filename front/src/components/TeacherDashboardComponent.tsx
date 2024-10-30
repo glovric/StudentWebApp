@@ -24,7 +24,6 @@ function TeacherDashboardComponent() {
             const result = await response.json();
 
             if (response.ok) {
-                console.log("Response in Dashboard:", result);
                 setCourses(result);
             } else {
                 console.log("Dashboard failed:", result);
