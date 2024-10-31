@@ -47,8 +47,7 @@ export const refreshAccessToken = async () => {
     } catch (error) {
 
         console.error('Error refreshing access token:', error);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        removeJWT();
         return null;
         
     }

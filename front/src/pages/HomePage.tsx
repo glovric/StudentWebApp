@@ -1,4 +1,3 @@
-import { useUser } from "../misc/UserContext";
 import campus from "../assets/campus.jpg";
 import courses from "../assets/courses.jpg";
 import professors from "../assets/professors.png";
@@ -7,8 +6,6 @@ import uni from "../assets/uni.jpg";
 import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 function HomePage() {
-
-    const { userData } = useUser();
 
     useElementOnScreen(".left", "slide-in-left", {threshold: 0.1});
     useElementOnScreen(".right", "slide-in-right", {threshold: 0.1});

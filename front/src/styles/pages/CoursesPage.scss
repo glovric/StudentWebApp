@@ -1,0 +1,43 @@
+.courses {
+
+    .course-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    
+    .course-card {
+        flex: 0 0 calc(33.33% - 10px); /* 3 divs per row with space */
+        box-sizing: border-box;
+        margin-right: 10px;
+        margin-bottom: 20px; /* spacing between rows */
+        padding: 15px;
+        border: 2px solid $secondary-color-gold;
+        border-radius: 5px;
+        text-align: center;
+        background-color: $primary-color-green;
+        color: $secondary-color-gold;
+
+        opacity: 0; /* Start invisible */
+        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+
+        img {
+            width: 100%;
+            height: auto; /* Maintains the aspect ratio */
+        }
+    }
+
+    .show {
+        opacity: 1;
+        transform: translateX(0); /* Slide into view */
+    }
+
+    .start-left {
+        transform: translateX(-20%); /* Start off-screen to the right */
+    }
+
+    .start-right {
+        transform: translateX(20%); /* Slide into view from the right */
+    }
+
+}

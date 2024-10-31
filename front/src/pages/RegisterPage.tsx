@@ -7,7 +7,7 @@ import { useElementOnScreen } from "../misc/useElementOnScreen";
 function RegisterPage() {
 
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    useElementOnScreen(".form", "slide-in-up", {threshold: 0.1});
+    useElementOnScreen(".form", "slide-in-down", {threshold: 0.1});
 
     // For switching pages
     const navigate = useNavigate();

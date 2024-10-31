@@ -8,13 +8,11 @@ from random import choices
 from .models import Course, Student, Teacher, Enrollment
 from .serializers import CourseSerializer
 from .helpers import get_user_type, get_available_student_courses, get_student_courses, get_teacher_courses
+from rest_framework import generics
 
-class CourseView(APIView):
-
-    def get(self, request):
-        courses = Course.objects.all()
-        serializer = CourseSerializer(courses)
-        return JsonResponse(serializer.data, safe=False, status=200)
+class CourseView(generics.ListAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
 
 class RegisterView(APIView):
 

@@ -4,9 +4,11 @@
 @import "components/Navbar.scss";
 
 @import "pages/HomePage.scss";
+@import "pages/CoursesPage.scss";
 @import "pages/LoginPage.scss";
 @import "pages/RegisterPage.scss";
 @import "pages/RegisterSuccessPage.scss";
+@import "pages/ProfilePage.scss";
 
 .wrapper {
     width: 90%; /* or a fixed width, like 600px */
@@ -33,4 +35,9 @@ button:hover {
 button:active {
     transform: translateY(0); /* Reset lift on click */
     background-color: $secondary-color-gold; /* Even darker shade on click */
+}
+
+.slide-in-up {
+    opacity: 1;
+    transform: translateY(0);
 }

@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getJWT, refreshAccessToken, setJWT, removeJWT } from '../misc/Tokens';
+import { setJWT, removeJWT } from '../misc/Tokens';
 import { useUser } from "../misc/UserContext";
 import { useElementOnScreen } from "../misc/useElementOnScreen";
 

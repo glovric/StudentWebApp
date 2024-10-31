@@ -21,7 +21,7 @@
         background-color: $primary-color-green;
     
         opacity: 0; /* Start invisible */
-        transform: translateY(50%); /* Start off-screen to the left */
+        transform: translateY(-50%); /* Start off-screen to the left */
         transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
     
         h3 {
@@ -57,7 +57,7 @@
     
     }
 
-    .slide-in-up {
+    .slide-in-down {
         opacity: 1;
         transform: translateY(0);
     }

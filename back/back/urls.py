@@ -22,7 +22,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('courses/', CourseView.as_view(), name='course-list-create'),
+    path('courses/', CourseView.as_view(), name='course-list'),
     path('csrf-token/', get_csrf_token, name='get-csrf-token'),
     path('login/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
     path('register/', RegisterView.as_view(), name='register'),
