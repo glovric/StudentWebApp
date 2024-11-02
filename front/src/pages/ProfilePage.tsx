@@ -33,7 +33,7 @@ function ProfilePage() {
     return (
         <div className="profile">
             <div className="profile-info">
-                <h1>Student information</h1>
+                <h1>User information</h1>
                 <div className="left">Username: {userData?.username}</div>
                 <div className="right">Mail address: {userData?.email}</div>
                 <div className="left">First name: {userData?.first_name}</div>

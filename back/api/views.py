@@ -50,8 +50,6 @@ class RegisterView(APIView):
                              'username': username})
    
 class UserDataView(APIView):
-    
-    permission_classes = [IsAuthenticated]
 
     def get(self, request):
 
