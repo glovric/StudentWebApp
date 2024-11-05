@@ -6,13 +6,20 @@ from rest_framework.permissions import IsAuthenticated
 import json
 from random import choices
 from .models import Course, Student, Teacher, Enrollment
-from .serializers import CourseSerializer
+from .serializers import CourseSerializer, TeacherSerializer
 from .helpers import get_user_type, get_available_student_courses, get_student_courses, get_teacher_courses
 from rest_framework import generics
 
 class CourseView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+class TeacherView(generics.ListAPIView):
+
+    permission_classes = [IsAuthenticated]
+    
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
 
 class RegisterView(APIView):
 

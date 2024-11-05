@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import (CourseView, UserDataView, EnrollView, 
+from api.views import (CourseView, TeacherView, UserDataView, EnrollView, 
                        RegisterView, TeacherDashboardView, StudentDashboardView)
 from api.helpers import get_csrf_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -32,5 +32,6 @@ urlpatterns = [
     path('delete-enroll/<int:enrollment_id>/', EnrollView.as_view(), name='delete-enroll'),  # For DELETE requests
     path('teacher-dashboard/', TeacherDashboardView.as_view(), name='teacher-dashboard'),
     path('student-dashboard/available-courses/', StudentDashboardView.as_view(), name='student-dashboard'),
-    path('student-dashboard/my-courses/', StudentDashboardView.as_view(), name='student-dashboard')
+    path('student-dashboard/my-courses/', StudentDashboardView.as_view(), name='student-dashboard'),
+    path('teachers/', TeacherView.as_view(), name='teacher-list')
 ]

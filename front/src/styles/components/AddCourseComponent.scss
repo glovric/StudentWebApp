@@ -1,0 +1,21 @@
+.add-course {
+    position: fixed;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    width: 70%;
+    height: 80%;
+
+    .add-course-form {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

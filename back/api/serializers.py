@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course
+from .models import Course, Teacher
 
 class CourseSerializer(serializers.ModelSerializer):
     
@@ -21,4 +21,16 @@ class CourseSerializer(serializers.ModelSerializer):
             for associate in obj.associates.all() if associate.user
         ]
         return ", ".join(lista)
+    
+class TeacherSerializer(serializers.ModelSerializer):
+
+    name = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Teacher
+        fields = ['id', 'academic_id', 'academic_title', 'name']  # Adjust fields as needed
         
+    def get_name(self, obj):
+        if obj.user:
+            return f"{obj.user.first_name} {obj.user.last_name}"
+        return None

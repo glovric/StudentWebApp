@@ -1,13 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getJWT } from '../misc/Tokens';
 import TeacherCourseComponent from './TeacherCourseComponent';
 import type { Course } from '../misc/Types';
+import AddCourseComponent from '../pages/AddCoursePage';
 
 function TeacherDashboardComponent() {
+
     const [courses, setCourses] = useState<Course[]>([]);
+
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
     const [popupOpacity, setPopupOpacity] = useState<number>(1);
+
+    const [popupAddCourseVisible, setPopupAddCourseVisible] = useState<boolean>(false);
+    const [popupAddCourseOpacity, setPopupAddCourseOpacity] = useState<number>(1);
+    const addCoursePopupRef = useRef<HTMLDivElement | null>(null);
+
+    const showAddCoursePopup = () => {
+        setPopupAddCourseVisible(true);
+        setPopupAddCourseOpacity(0.9);
+    };
+
+    const hideAddCoursePopup = () => {
+        setPopupAddCourseVisible(false);
+        setPopupAddCourseOpacity(0);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (addCoursePopupRef.current && !addCoursePopupRef.current.contains(event.target as Node)) {
+            hideAddCoursePopup();
+        }
+    };
 
     const loadTeacherCourses = async () => {
         try {
@@ -102,12 +125,22 @@ function TeacherDashboardComponent() {
 
     // Use loadTeacherCourses on component mount
     useEffect(() => {
+
         loadTeacherCourses();
+
+        // Add event listener to document
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
 
     return (
         <div className='teacher-dashboard'>
-            <h1>Your Courses</h1>
+            <div className='teacher-dashboard-header'>
+                <h1>Your Courses</h1>
+                <button onClick={showAddCoursePopup}>Add a course</button>
+            </div>
             {courses.length > 0 ? (
                 courses.map((course) => (
                     <TeacherCourseComponent
@@ -124,6 +157,12 @@ function TeacherDashboardComponent() {
             {popupVisible && (
                 <div className="popup" style={{ opacity: popupOpacity }}>
                     {popupMessage}
+                </div>
+            )}
+
+            {popupAddCourseVisible && (
+                <div style={{ opacity: popupAddCourseOpacity }} ref={addCoursePopupRef}>
+                    {<AddCourseComponent/>}
                 </div>
             )}
         </div>

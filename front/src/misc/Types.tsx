@@ -12,4 +12,11 @@ type Course = {
     not_enrolled_students: Student[];
 };
 
-export type { Student, Course };
+type Teacher = {
+    id: number;
+    name: string;
+    academic_id: string;
+    academic_title: string;
+}
+
+export type { Student, Course, Teacher };
