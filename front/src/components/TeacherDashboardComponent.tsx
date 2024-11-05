@@ -56,6 +56,11 @@ function TeacherDashboardComponent() {
         }
     };
 
+    const refreshCourses = () => {
+        loadTeacherCourses(); // Re-load courses after a course has been added
+        hideAddCoursePopup(); // Hide the AddCourse popup after the course is added
+    };
+
     const deleteFromCourse = async (enrollmentId: number, courseName: string, studentName: string) => {
         try {
             const token = getJWT().access;
@@ -123,6 +128,32 @@ function TeacherDashboardComponent() {
         }
     };
 
+    const deleteCourse = async (courseID: number) => {
+
+        try {
+
+            const token = getJWT().access;
+
+            // Send request to enroll in the course
+            const response = await fetch(`http://localhost:8000/delete-course/${courseID}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+
+            if (response.status === 204) {
+                loadTeacherCourses();
+            } else {
+                console.log("Course adding failed");
+            }
+        } catch (error) {
+            console.log(`An error occurred during enrollment: ${(error as Error).message}`);
+        }
+
+    }
+
     // Use loadTeacherCourses on component mount
     useEffect(() => {
 
@@ -148,6 +179,7 @@ function TeacherDashboardComponent() {
                         course={course} 
                         deleteFromCourse={deleteFromCourse} 
                         handleEnrollStudent={handleEnrollStudent} 
+                        deleteCourse={deleteCourse}
                     />
                 ))
             ) : (
@@ -162,7 +194,7 @@ function TeacherDashboardComponent() {
 
             {popupAddCourseVisible && (
                 <div style={{ opacity: popupAddCourseOpacity }} ref={addCoursePopupRef}>
-                    {<AddCourseComponent/>}
+                    {<AddCourseComponent onCourseAdded={refreshCourses}/>}
                 </div>
             )}
         </div>

@@ -1,11 +1,16 @@
 import { useEffect } from 'react';
 import { getJWT } from '../misc/Tokens';
-import { useNavigate } from 'react-router-dom';
-import { useUser } from "../misc/UserContext";
-import { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState, FC } from "react";
 import { Teacher } from '../misc/Types';
+import { useNavigate } from 'react-router-dom';
 
-function AddCourseComponent() {
+interface AddCourseComponentProps {
+    onCourseAdded: () => void; // Callback to notify parent that the course is added
+}
+
+const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
+
+    const navigate = useNavigate();
 
     const [selectedAssociates, setSelectedAssociates] = useState<number[]>([]); // Array of selected associate IDs
     const [associates, setAssociates] = useState<Teacher[] | null>(null); // List of all associates
@@ -67,8 +72,7 @@ function AddCourseComponent() {
         const courseName = (form.elements.namedItem('name') as HTMLInputElement).value;
         const coursePoints = (form.elements.namedItem('points') as HTMLInputElement).value;
         const courseImage = (form.elements.namedItem('image') as HTMLInputElement).value;
-        const courseAssociates = (form.elements.namedItem('associates') as HTMLInputElement).value;
-        return {courseName, coursePoints, courseImage, courseAssociates};
+        return {courseName, coursePoints, courseImage, selectedAssociates};
     }
 
     const handleAddCourseSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -83,21 +87,20 @@ function AddCourseComponent() {
             const token = getJWT().access;
 
             // Send request to /login
-            const response = await fetch('http://localhost:8000/', {
+            const response = await fetch('http://localhost:8000/add-course/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-
+                    'Authorization': `Bearer ${token}`,
                 },
-                credentials: 'include',
                 body: JSON.stringify(formData),
             });
 
             const result = await response.json();
 
-            // If response is ok (user exists), it returns JWT token
             if (response.ok) {
-                console.log('Registration successful!');
+                console.log('Course added successfully!');
+                onCourseAdded(); // Refresh Teacher Dashboard and remove Add Course popup
             } else {
                 console.log(`Registration failed: ${result.message}`);
             }

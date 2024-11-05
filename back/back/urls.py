@@ -33,5 +33,7 @@ urlpatterns = [
     path('teacher-dashboard/', TeacherDashboardView.as_view(), name='teacher-dashboard'),
     path('student-dashboard/available-courses/', StudentDashboardView.as_view(), name='student-dashboard'),
     path('student-dashboard/my-courses/', StudentDashboardView.as_view(), name='student-dashboard'),
-    path('teachers/', TeacherView.as_view(), name='teacher-list')
+    path('teachers/', TeacherView.as_view(), name='teacher-list'),
+    path('add-course/', TeacherDashboardView.as_view(), name='add-course'),
+    path('delete-course/<int:course_id>/', TeacherDashboardView.as_view(), name='delete-ecourse'),
 ]

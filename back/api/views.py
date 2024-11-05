@@ -178,6 +178,37 @@ class TeacherDashboardView(APIView):
         else:
             return JsonResponse({'message': 'Failed in TeacherDashboardView.'}, status=400)
         
+    def post(self, request):
+        user_id = request.user.id
+        data = json.loads(request.body)
+        course_name = data['courseName']
+        course_points = int(data['coursePoints'])
+        image_url = data['courseImage']
+        associate_idx = data['selectedAssociates']
+
+        coordinator = Teacher.objects.get(user_id=user_id)
+        associates = Teacher.objects.filter(id__in=associate_idx)
+
+        new_course = Course.objects.create(
+            name=course_name,
+            points=course_points,
+            image_url=image_url,
+            coordinator=coordinator
+        )
+
+        new_course.associates.add(*associates)
+        return JsonResponse({'message': 'success'}, status=200)
+    
+    def delete(self, request, course_id):
+        try:
+            course = Course.objects.get(id=course_id)
+            course.delete()
+            print(f'izbrisao sam course {course_id}')
+            return JsonResponse({}, status=204)  # Empty response body  # No content returned on successful deletion
+        except Course.DoesNotExist:
+            return JsonResponse({"detail": "Course not found."}, status=404)
+
+        
 class StudentDashboardView(APIView):
     
     permission_classes = [IsAuthenticated]

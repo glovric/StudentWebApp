@@ -5,9 +5,10 @@ type CourseProps = {
     course: Course;
     deleteFromCourse: (enrollmentId: number, courseName: string, studentName: string) => Promise<void>;
     handleEnrollStudent: (courseID: number, courseName: string, studentID: number, studentName: string) => Promise<void>;
+    deleteCourse: (courseID: number) => Promise<void>;
 };
 
-const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, handleEnrollStudent }) => {
+const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, handleEnrollStudent, deleteCourse }) => {
 
     const [selectedStudent, setSelectedStudent] = useState<number | null>(null);
 
@@ -27,7 +28,10 @@ const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, han
 
     return (
         <div className='teacher-course' key={course.id}>
-            <h2>{course.name}</h2>
+            <div className='course-heading'>
+                <h2 className='centered-item'>{course.name}</h2>
+                <button className='right-item' onClick={() => deleteCourse(course.id)}>Delete course</button>
+            </div>
             <table>
                 <thead>
                     <tr>
