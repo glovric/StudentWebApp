@@ -2,15 +2,12 @@ import { useEffect } from 'react';
 import { getJWT } from '../misc/Tokens';
 import { FormEvent, ChangeEvent, useState, FC } from "react";
 import { Teacher } from '../misc/Types';
-import { useNavigate } from 'react-router-dom';
 
 interface AddCourseComponentProps {
     onCourseAdded: () => void; // Callback to notify parent that the course is added
 }
 
 const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
-
-    const navigate = useNavigate();
 
     const [selectedAssociates, setSelectedAssociates] = useState<number[]>([]); // Array of selected associate IDs
     const [associates, setAssociates] = useState<Teacher[] | null>(null); // List of all associates

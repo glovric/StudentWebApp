@@ -1,20 +1,26 @@
-# Step 1: Build the Django application
+# Step 1: Use an official Python image
 FROM python:3.10
 
-# Set the working directory
+# Step 2: Set the working directory
 WORKDIR /app
 
-# Copy the requirements file
+# Step 3: Copy the requirements file and install dependencies
 COPY requirements.txt .
 
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Step 4: Copy the application code
 COPY . .
 
-# Expose the port Django runs on
+# Step 5: Copy the entrypoint script and make it executable
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Step 6: Expose the port that Django runs on
 EXPOSE 8000
 
-# Start the Django server
+# Step 7: Set the entrypoint to the script
+ENTRYPOINT ["/entrypoint.sh"]
+
+# Step 8: Default command to run Django when the container starts
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

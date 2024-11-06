@@ -9,9 +9,14 @@ services:
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
     volumes:
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql  # Mount the SQL file
+      - ./db.sql:/app/db.sql  # Mount the SQL file for database population
     ports:
       - "3307:3306"  # Maps port 3306 in the container to port 3306 on the host
+    healthcheck:
+        test: ["CMD", "sh", "-c", "env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'"]    
+        interval: 5s
+        timeout: 5s
+        retries: 3
 
   frontend:
     build:
@@ -33,5 +38,9 @@ services:
       - DB_NAME=mydatabase
       - DB_USER=myuser
       - DB_PASSWORD=mypassword
+      - DJANGO_SUPERUSER_USERNAME=root  # Username for the superuser
+      - DJANGO_SUPERUSER_EMAIL=root@localhost  # Superuser email
+      - DJANGO_SUPERUSER_PASSWORD=pass  # Superuser password
     depends_on:
-      - db
+      db:
+        condition: service_healthy
