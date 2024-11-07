@@ -32,8 +32,8 @@ services:
     ports:
       - "8000:8000"  # Maps port 8000 in the container to port 8000 on the host
     environment:
-      DB_HOST: db
-      DB_NAME: fakzapp
+      DB_HOST: db # Database service is named db
+      DB_NAME: fakzapp # Database name to use
       DB_USER: root
       DB_PASSWORD: pass
       DJANGO_SUPERUSER_USERNAME: root
