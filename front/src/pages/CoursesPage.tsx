@@ -78,15 +78,18 @@ function CoursesPage() {
     }
 
     useEffect(() => {
-
-        const fetchCoursesAndAnimate = async () => {
-            await fetchAvailableCourses(); // Wait for fetching to complete
-            animateCourseRows();
+        const fetchCourses = async () => {
+            await fetchAvailableCourses(); // Wait for courses to load
         };
-
-        fetchCoursesAndAnimate();
-        
-    }, []); // Run on component mount
+    
+        fetchCourses();
+    }, []); // Only run once on mount
+    
+    useEffect(() => {
+        if (availableCourses) {
+            animateCourseRows();  // Now that availableCourses is populated, observe elements
+        }
+    }, [availableCourses]);  // Trigger when availableCourses changes
 
     return(
         <div className='courses'>

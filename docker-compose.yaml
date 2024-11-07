@@ -8,8 +8,6 @@ services:
       MYSQL_DATABASE: fakzapp
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
-    #volumes:
-    #  - ./db.sql:/docker-entrypoint-initdb.d/db.sql  # Mount the SQL file to the init directory
     ports:
       - "3307:3306"
     healthcheck:
