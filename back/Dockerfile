@@ -16,6 +16,8 @@ COPY . .
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN mkdir -p logs && chmod 777 logs
+
 # Step 6: Expose the port that Django runs on
 EXPOSE 8000
 
