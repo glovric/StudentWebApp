@@ -4,14 +4,14 @@ services:
     image: mysql:8.0.11
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: fakzapp
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
-    volumes:
-      - ./db.sql:/app/db.sql  # Mount the SQL file for database population
+    #volumes:
+    #  - ./db.sql:/docker-entrypoint-initdb.d/db.sql  # Mount the SQL file to the init directory
     ports:
-      - "3307:3306"  # Maps port 3306 in the container to port 3306 on the host
+      - "3307:3306"
     healthcheck:
         test: ["CMD", "sh", "-c", "env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD mysql -h localhost -u root -p$MYSQL_ROOT_PASSWORD -e 'SELECT 1'"]    
         interval: 5s
@@ -34,13 +34,15 @@ services:
     ports:
       - "8000:8000"  # Maps port 8000 in the container to port 8000 on the host
     environment:
-      - DB_HOST=db
-      - DB_NAME=mydatabase
-      - DB_USER=myuser
-      - DB_PASSWORD=mypassword
-      - DJANGO_SUPERUSER_USERNAME=root  # Username for the superuser
-      - DJANGO_SUPERUSER_EMAIL=root@localhost  # Superuser email
-      - DJANGO_SUPERUSER_PASSWORD=pass  # Superuser password
+      DB_HOST: db
+      DB_NAME: fakzapp
+      DB_USER: root
+      DB_PASSWORD: pass
+      DJANGO_SUPERUSER_USERNAME: root
+      DJANGO_SUPERUSER_EMAIL: root@localhost
+      DJANGO_SUPERUSER_PASSWORD: pass
+    volumes:
+      - ./initial_data.json:/app/initial_data.json  # Mount initial_data.json into the /app directory in the container
     depends_on:
       db:
         condition: service_healthy

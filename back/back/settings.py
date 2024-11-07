@@ -93,9 +93,9 @@ WSGI_APPLICATION = 'back.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME', 'mydatabase'),
-        'USER': os.environ.get('DB_USER', 'myuser'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'mypassword'),
+        'NAME': os.environ.get('DB_NAME', 'fakzapp'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'pass'),
         'HOST': os.environ.get('DB_HOST', 'db'),
         'PORT': '3306',
     }

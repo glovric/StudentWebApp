@@ -2,6 +2,7 @@
 
 # Check if the flag file exists. If it does, skip initialization.
 if [ ! -f /app/first_run.flag ]; then
+
     echo "First run: Initializing the database..."
 
     # Run Django migrations to set up the database schema
@@ -28,15 +29,16 @@ else:
     print("Superuser already exists.")
 EOF
 
-    # Populate the database with initial data from db.sql if it's present
-    if [ -f /app/db.sql ]; then
-        echo "Populating the database with db.sql..."
-        mysql -h "$DB_HOST" -u root -p"$MYSQL_ROOT_PASSWORD" mydatabase < /app/db.sql
+    # Load initial data from the JSON file
+    if [ -f /app/initial_data.json ]; then
+        echo "Loading initial data into the database..."
+        python manage.py loaddata /app/initial_data.json
     fi
 
     # Mark the process as complete by creating a flag file
     touch /app/first_run.flag
     echo "Database initialized, migrations applied, and superuser created. Flag file created."
+
 fi
 
 # Continue with the Django server start
