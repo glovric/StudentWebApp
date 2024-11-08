@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Step 3: Copy the requirements file and install dependencies
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Step 4: Copy the application code
@@ -16,6 +15,7 @@ COPY . .
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Step 6: Create logs directory for Django logs
 RUN mkdir -p logs && chmod 777 logs
 
 # Step 6: Expose the port that Django runs on

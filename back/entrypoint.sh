@@ -9,6 +9,12 @@ if [ ! -f /app/first_run.flag ]; then
     echo "Running Django migrations..."
     python manage.py migrate
 
+    # Load initial data from the JSON file
+    if [ -f /app/initial_data.json ]; then
+        echo "Loading initial data into the database..."
+        python manage.py loaddata /app/initial_data.json
+    fi
+
     # Create a Django superuser if it doesn't exist
     echo "Creating Django superuser..."
 
@@ -24,16 +30,10 @@ if not User.objects.filter(username='$DJANGO_SUPERUSER_USERNAME').exists():
         email='$DJANGO_SUPERUSER_EMAIL',
         password='$DJANGO_SUPERUSER_PASSWORD'
     )
-    print("Superuser created.")
+    print("Superuser created!")
 else:
     print("Superuser already exists.")
 EOF
-
-    # Load initial data from the JSON file
-    if [ -f /app/initial_data.json ]; then
-        echo "Loading initial data into the database..."
-        python manage.py loaddata /app/initial_data.json
-    fi
 
     # Mark the process as complete by creating a flag file
     touch /app/first_run.flag

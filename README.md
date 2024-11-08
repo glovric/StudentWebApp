@@ -23,7 +23,7 @@ Before starting, ensure you have the following installed (unless you would like 
     MYSQL_PASSWORD: some_password
     ```
 
-    dotenv
+    .env
     ```
     MYSQL_ROOT_PASSWORD=some_root_password
     MYSQL_DATABASE=some_db_name
@@ -97,3 +97,7 @@ Before starting, ensure you have the following installed (unless you would like 
     cd back
     python manage.py runserver
     ```
+
+## Notes
+
+You may need to change End of Line Sequence for `back/entrypoint.sh` depending on which OS Docker is run.
