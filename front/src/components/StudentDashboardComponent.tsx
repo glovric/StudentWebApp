@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getJWT } from '../misc/Tokens';
+import { animateCourseRows } from '../misc/useElementOnScreen';
 
 type AvailableCourse = {
     id: number;
@@ -170,9 +171,25 @@ function StudentDashboardComponent() {
     }
 
     useEffect(() => {
-        fetchAvailableCourses();
-        fetchStudentCourses();
-    }, []);
+        const fetchCourses = async () => {
+            await fetchAvailableCourses(); // Wait for courses to load
+            await fetchStudentCourses();
+        };
+    
+        fetchCourses();
+    }, []); // Only run once on mount
+    
+    useEffect(() => {
+        if (availableCourses) {
+            animateCourseRows();  // Now that availableCourses is populated, observe elements
+        }
+    }, [availableCourses]);  // Trigger when availableCourses changes
+
+    useEffect(() => {
+        if(studentCourses) {
+            animateCourseRows();
+        }
+    }, [studentCourses]);  // Trigger when availableCourses changes
 
     return(
         <div className='student-dashboard'>
@@ -182,16 +199,24 @@ function StudentDashboardComponent() {
             {availableCourses ? (
                 availableCourses.length > 0 ? (
                     <div className="course-container">
-                        {availableCourses.map((course, index) => (
-                            <div className="course-card" key={index}>
-                                <h3>{course.name}</h3>
-                                <p>{course.points} points</p>
-                                <p>Course instructor: {course.coordinator ? course.coordinator : "Unknown"}</p>
-                                <p>Course associates: {course.associates ? course.associates : "Unknown"}</p>
-                                <img src={course.image_url}></img>
-                                <button onClick={() => enrollToCourse(course.id, course.name)}>Enroll</button>
-                            </div>
-                        ))}
+                        {availableCourses.map((course, index) => {
+                            // Determine which class to use based on index
+                            const start_side = Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right';
+                            return (
+                                <div className={`course-card ${start_side}`} key={index}>
+                                    <img src={course.image_url} alt={course.name}></img>
+                                    <div className='course-card-content'>
+                                        <h2>{course.name}</h2>
+                                        <p>{course.points} points</p>
+                                        <p>Course instructor: {course.coordinator ? course.coordinator : "None"}</p>
+                                        <p>Course associates: {course.associates ? course.associates : "None"}</p>
+                                        <div className='button-div'>
+                                            <button onClick={() => enrollToCourse(course.id, course.name)}>Enroll</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 ) : (
                     <p>No courses available.</p>
@@ -205,16 +230,24 @@ function StudentDashboardComponent() {
             {studentCourses ? (
                 studentCourses.length > 0 ? (
                     <div className="course-container">
-                        {studentCourses.map((course, index) => (
-                            <div className="course-card" key={index}>
-                                <h3>{course.name}</h3>
-                                <p>{course.points} points</p>
-                                <p>Course instructor: {course.coordinator ? course.coordinator : "Unknown"}</p>
-                                <p>Course associates: {course.associates ? course.associates : "Unknown"}</p>
-                                <img src={course.image_url}></img>
-                                <button onClick={() => deleteFromCourse(course.enrollment_id, course.name)}>Unenroll</button>
-                            </div>
-                        ))}
+                        {studentCourses.map((course, index) => {
+                            // Determine which class to use based on index
+                            const start_side = Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right';
+                            return (
+                                <div className={`course-card ${start_side}`} key={index}>
+                                    <img src={course.image_url} alt={course.name}></img>
+                                    <div className='course-card-content'>
+                                        <h2>{course.name}</h2>
+                                        <p>{course.points} points</p>
+                                        <p>Course instructor: {course.coordinator ? course.coordinator : "None"}</p>
+                                        <p>Course associates: {course.associates ? course.associates : "None"}</p>
+                                        <div className='button-div'>
+                                            <button onClick={() => deleteFromCourse(course.enrollment_id, course.name)}>Unenroll</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 ) : (
                     <p>No courses available.</p>
