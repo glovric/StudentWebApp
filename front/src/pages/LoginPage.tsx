@@ -1,13 +1,13 @@
 import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import { setJWT, removeJWT } from '../misc/Tokens';
+import { setJWT } from '../misc/Tokens';
 import { useUser } from "../misc/UserContext";
 import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 
 function LoginPage() {
 
-    const { fetchUserData, setUserData } = useUser();
+    const { fetchUserData } = useUser();
     useElementOnScreen(".form", "slide-in-up", {threshold: 0.1});
 
     // For switching pages
@@ -59,13 +59,6 @@ function LoginPage() {
 
     };
 
-    const handleLogOut = () => {
-        removeJWT();
-        setUserData(null);
-        console.log("User logged out.");
-        navigate('/login');
-    }
-
     return (
         <div className="login">
             <form className="form" onSubmit={handleSubmit}>
@@ -87,7 +80,6 @@ function LoginPage() {
                 </input>
 
                 <button type="submit">Submit</button>
-                <button onClick={handleLogOut}>Log Out</button>
             </form>
 
         </div>

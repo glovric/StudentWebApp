@@ -4,7 +4,15 @@
     font-size: 25px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+
+    .upper-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        color: $secondary-color-gold;
+        font-size: 15px;
+        padding: 10px 10px 0 0;
+    }
 
     img {
         width: 150px;
@@ -21,16 +29,33 @@
     }
   
     li {
-        //margin-right: 20px; /* Spacing between items */
         background-color: #253C34;
-        //text-align: center;
         align-content: center;
         transition: background-color 0.1s ease-in;
-        border-bottom: 4px solid transparent;
+        //border-bottom: 4px solid transparent;
         border-radius: 5px;
         color: #BEAA6F;
         height: 30%;
         padding: 10px;
+        position: relative; /* Required for absolute positioning of the pseudo-element */
+        overflow: hidden;   /* Ensures the border stays within the element */
+    }
+
+    li::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;  /* Start at the center */
+        width: 0;
+        height: 4px;
+        background-color: #BEAA6F;
+        transition: width 0.3s ease, left 0.3s ease; /* Animates width and position */
+    }
+
+    /* Trigger the animation on hover */
+    li:hover::before {
+        left: 0; /* Move it to the left */
+        width: 100%; /* Expand to full width */
     }
 
     li:hover {
