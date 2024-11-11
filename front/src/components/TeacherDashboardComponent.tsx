@@ -3,10 +3,11 @@ import { getJWT } from '../misc/Tokens';
 import TeacherCourseComponent from './TeacherCourseComponent';
 import type { Course } from '../misc/Types';
 import AddCourseComponent from '../pages/AddCoursePage';
+import { animateTeacherCourseTable } from '../misc/useElementOnScreen';
 
 function TeacherDashboardComponent() {
 
-    const [courses, setCourses] = useState<Course[]>([]);
+    const [courses, setCourses] = useState<Course[] | null>([]);
 
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
@@ -157,7 +158,11 @@ function TeacherDashboardComponent() {
     // Use loadTeacherCourses on component mount
     useEffect(() => {
 
-        loadTeacherCourses();
+        const waitCourses = async () => {
+            await loadTeacherCourses();
+        }
+
+        waitCourses();
 
         // Add event listener to document
         document.addEventListener('mousedown', handleClickOutside);
@@ -166,22 +171,33 @@ function TeacherDashboardComponent() {
         };
     }, []);
 
+    useEffect(() => {
+        if(courses !== null) {
+            animateTeacherCourseTable(".start-left", "show", {threshold: 0.5});
+            animateTeacherCourseTable(".start-right", "show", {threshold: 0.5});
+        }
+    }, [courses])
+
     return (
         <div className='teacher-dashboard'>
             <div className='teacher-dashboard-header'>
-                <h1>Your Courses</h1>
-                <button onClick={showAddCoursePopup}>Add a course</button>
+                <button onClick={showAddCoursePopup}>Add new course</button>
             </div>
-            {courses.length > 0 ? (
-                courses.map((course) => (
-                    <TeacherCourseComponent
-                        key={course.id} 
+            {courses !== null ? (
+                courses?.map((course, index) => {
+                    const start_side = index % 2 === 0 ? 'start-left' : 'start-right';
+                    return (
+                    <div className={`${start_side}`}>
+                        <TeacherCourseComponent
+                        key={index} 
                         course={course} 
                         deleteFromCourse={deleteFromCourse} 
                         handleEnrollStudent={handleEnrollStudent} 
                         deleteCourse={deleteCourse}
-                    />
-                ))
+                        />
+                    </div>
+                    )
+                })
             ) : (
                 <p>No courses available.</p>
             )}

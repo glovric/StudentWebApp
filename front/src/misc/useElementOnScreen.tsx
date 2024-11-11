@@ -92,3 +92,21 @@ export const animateCourseRows = () => {
       }
   });
 }
+
+export const animateTeacherCourseTable = (targetClass: any, addClass: string, options: any) => {
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(addClass);
+          }
+        });
+
+      }, options);
+
+    const allElements = document.querySelectorAll(targetClass);
+
+    allElements.forEach((element) => observer.observe(element));
+
+};
