@@ -38,6 +38,18 @@ button:active {
     background-color: $secondary-color-gold; /* Even darker shade on click */
 }
 
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+}
+
 .start-left {
     opacity: 0; /* Start invisible */
     transform: translateX(-20%); /* Start off-screen to the left */
@@ -50,12 +62,14 @@ button:active {
     transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
 }
 
-.slide-in {
-    opacity: 1 !important;
-    transform: translateY(0) !important; // For vertical sliding
+// Using .wrapper in front to increase specificty
+.wrapper .slide-in {
+    opacity: 1;
+    transform: translateY(0); // For vertical sliding
 }
 
-.show {
-    opacity: 1 !important;
-    transform: translateX(0) !important; // For horizontal sliding
+// Using .wrapper in front to increase specificty
+.wrapper .show {
+    opacity: 1;
+    transform: translateX(0); // For horizontal sliding
 }

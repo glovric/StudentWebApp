@@ -54,29 +54,4 @@
         }
 
     }
-
-    .show {
-        opacity: 1;
-        transform: translateX(0); /* Slide into view */
-    }
-
-    .start-left {
-        transform: translateX(-20%); /* Start off-screen to the right */
-    }
-
-    .start-right {
-        transform: translateX(20%); /* Slide into view from the right */
-    }
-
-    .popup {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border-radius: 5px;
-        z-index: 1000;
-        transition: opacity 0.8s ease;
-    }
 }
