@@ -107,9 +107,9 @@ Before starting, ensure you have the following installed (unless you would like 
 
 ## Notes
 
-    - You may need to change End of Line Sequence for `back/entrypoint.sh` depending on which OS Docker is run.
+- You may need to change End of Line Sequence for `back/entrypoint.sh` depending on which OS Docker is run.
 
-    - Use the following code to extract database data using Django
+- Use the following code to extract database data using Django
     ```bash
     python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes --indent=4 > data.json
     ```
