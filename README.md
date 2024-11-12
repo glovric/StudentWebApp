@@ -84,14 +84,21 @@ Before starting, ensure you have the following installed (unless you would like 
     python manage.py loaddata ../initial_data.json
     ```
 
-5. Run frontend in developer mode:
+6. Run Django `createsuperuser` to create a superuser for Django admin.
+
+    ```bash
+    cd back
+    python manage.py createsuperuser
+    ```
+
+7. Run frontend in developer mode:
 
     ```bash
     cd front
     npm run dev
     ```
 
-6. Run backend:
+8. Run backend:
 
     ```bash
     cd back
@@ -100,4 +107,9 @@ Before starting, ensure you have the following installed (unless you would like 
 
 ## Notes
 
-You may need to change End of Line Sequence for `back/entrypoint.sh` depending on which OS Docker is run.
+    - You may need to change End of Line Sequence for `back/entrypoint.sh` depending on which OS Docker is run.
+
+    - Use the following code to extract database data using Django
+    ```bash
+    python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes --indent=4 > data.json
+    ```
