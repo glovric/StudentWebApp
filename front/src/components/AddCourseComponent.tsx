@@ -33,8 +33,6 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
 
             const result = await response.json();
 
-            console.log("Teacheri resutl:", result);
-
             if (response.ok) {
                 setAssociates(result);
             } else {
@@ -77,7 +75,6 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
         e.preventDefault();
 
         const formData = extractFormData(e);
-        console.log("Form data course:", formData);
         
         try {
 
@@ -96,10 +93,9 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
             const result = await response.json();
 
             if (response.ok) {
-                console.log('Course added successfully!');
                 onCourseAdded(); // Refresh Teacher Dashboard and remove Add Course popup
             } else {
-                console.log(`Registration failed: ${result.message}`);
+                console.error(`Course adding failed: ${result.message}`);
             }
 
         } catch (error) {

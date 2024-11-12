@@ -158,6 +158,7 @@ class TeacherDashboardView(APIView):
                 'enrolled_students': [{
                     'id': student.id,
                     'name': str(student),  # or any other representation
+                    'email': student.user.email,
                     'academic_id': student.academic_id,
                     'enrollment_id': enrollment.id,  # Assuming you can get this from a related enrollment
                 } for student in course.students.all()

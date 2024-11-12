@@ -128,10 +128,9 @@ function StudentDashboardComponent() {
 
             // If response is ok (user exists), return JWT token
             if (response.ok) {
-                console.log("Response u Student Dashboardu:", result);
                 setAvailableCourses(result);
             } else {
-                console.log("Student Dashboard failed:", result);
+                console.error("Student Dashboard failed:", result);
             }
 
         } catch (error) {
@@ -158,10 +157,9 @@ function StudentDashboardComponent() {
 
             // If response is ok (user exists), return JWT token
             if (response.ok) {
-                console.log("Response u Student Dashboardu za Studentove coursovoe:", result);
                 setStudentCourses(result);
             } else {
-                console.log("Student Dashboard failed:", result);
+                console.error("Student Dashboard failed:", result);
             }
 
         } catch (error) {

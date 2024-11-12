@@ -1,6 +1,7 @@
 type Student = {
     id: number;
     name: string;
+    email: string;
     academic_id: string;
     enrollment_id?: number;  // Optional since not all students will have an enrollment ID
 };

@@ -36,8 +36,9 @@ const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, han
                 <thead>
                     <tr>
                         <th>Student Name</th>
+                        <th>Mail</th>
                         <th>Academic ID</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,7 @@ const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, han
                         course.enrolled_students.map((student) => (
                             <tr key={student.id}>
                                 <td>{student.name}</td>
+                                <td>{student.email}</td>
                                 <td>{student.academic_id}</td>
                                 <td>
                                     <button onClick={() => deleteFromCourse(student.enrollment_id!, course.name, student.name)}>
@@ -59,7 +61,7 @@ const TeacherCourseComponent: FC<CourseProps> = ({ course, deleteFromCourse, han
                         </tr>
                     )}
                     <tr>
-                        <td colSpan={2}>
+                        <td colSpan={3}>
                             <select value={selectedStudent || ''}  onChange={(e) => handleSelectChange(Number(e.target.value))}>
                                 <option value="">Select a student</option>
                                 {course.not_enrolled_students.map((student) => (

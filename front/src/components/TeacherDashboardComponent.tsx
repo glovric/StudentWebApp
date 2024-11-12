@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { getJWT } from '../misc/Tokens';
 import TeacherCourseComponent from './TeacherCourseComponent';
 import type { Course } from '../misc/Types';
-import AddCourseComponent from '../pages/AddCoursePage';
+import AddCourseComponent from './AddCourseComponent';
 import { animateTeacherCourseTable } from '../misc/useElementOnScreen';
 
 function TeacherDashboardComponent() {
@@ -187,9 +187,8 @@ function TeacherDashboardComponent() {
                 courses?.map((course, index) => {
                     const start_side = index % 2 === 0 ? 'start-left' : 'start-right';
                     return (
-                    <div className={`${start_side}`}>
+                    <div key={course.id} className={`${start_side}`}>
                         <TeacherCourseComponent
-                        key={index} 
                         course={course} 
                         deleteFromCourse={deleteFromCourse} 
                         handleEnrollStudent={handleEnrollStudent} 

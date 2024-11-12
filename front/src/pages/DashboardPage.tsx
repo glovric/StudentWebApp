@@ -14,7 +14,7 @@ function DashboardPage() {
     }
     else {
         return(
-            <div>Ovo je Dashboard.</div>
+            <div>Welcome to Dashboard.</div>
         );
     }
 
