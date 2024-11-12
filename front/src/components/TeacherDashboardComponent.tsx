@@ -7,7 +7,7 @@ import { animateTeacherCourseTable } from '../misc/useElementOnScreen';
 
 function TeacherDashboardComponent() {
 
-    const [courses, setCourses] = useState<Course[] | null>([]);
+    const [courses, setCourses] = useState<Course[] | null>(null);
 
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
@@ -183,7 +183,8 @@ function TeacherDashboardComponent() {
             <div className='teacher-dashboard-header'>
                 <button onClick={showAddCoursePopup}>Add new course</button>
             </div>
-            {courses !== null ? (
+            {courses ? (
+                courses.length > 0 ? (
                 courses?.map((course, index) => {
                     const start_side = index % 2 === 0 ? 'start-left' : 'start-right';
                     return (
@@ -199,6 +200,8 @@ function TeacherDashboardComponent() {
                 })
             ) : (
                 <p>No courses available.</p>
+            )) : (
+                <p>Loading courses...</p>
             )}
 
             {popupVisible && (

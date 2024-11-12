@@ -7,7 +7,7 @@ import { useElementOnScreen } from "../misc/useElementOnScreen";
 function ProfilePage() {
 
     const { userData } = useUser();
-    useElementOnScreen(".profile-info", "slide-in-up", {threshold: 0.5});
+    useElementOnScreen(".profile-info", "slide-in", {threshold: 0.5});
 
     const navigate = useNavigate();
 

@@ -38,7 +38,24 @@ button:active {
     background-color: $secondary-color-gold; /* Even darker shade on click */
 }
 
-.slide-in-up {
-    opacity: 1;
-    transform: translateY(0);
+.start-left {
+    opacity: 0; /* Start invisible */
+    transform: translateX(-20%); /* Start off-screen to the left */
+    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+}
+
+.start-right {
+    opacity: 0; /* Start invisible */
+    transform: translateX(20%); /* Start off-screen to the left */
+    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+}
+
+.slide-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important; // For vertical sliding
+}
+
+.show {
+    opacity: 1 !important;
+    transform: translateX(0) !important; // For horizontal sliding
 }

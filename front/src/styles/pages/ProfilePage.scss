@@ -42,14 +42,5 @@
     .right {
         transform: translateX(50%); /* Start off-screen to the right */
     }
-    
-    .show {
-        opacity: 1;
-        transform: translateX(0); /* Slide into view */
-    }
 
-    .slide-in-up {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

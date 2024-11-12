@@ -7,8 +7,8 @@ import { useElementOnScreen } from "../misc/useElementOnScreen";
 
 function HomePage() {
 
-    useElementOnScreen(".left", "slide-in-left", {threshold: 0.1});
-    useElementOnScreen(".right", "slide-in-right", {threshold: 0.1});
+    useElementOnScreen(".left", "show", {threshold: 0.1});
+    useElementOnScreen(".right", "show", {threshold: 0.1});
 
     return (
         <div>

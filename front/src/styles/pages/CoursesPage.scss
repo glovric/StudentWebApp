@@ -41,17 +41,4 @@
         }
     }
 
-    .show {
-        opacity: 1;
-        transform: translateX(0); /* Slide into view */
-    }
-
-    .start-left {
-        transform: translateX(-20%); /* Start off-screen to the right */
-    }
-
-    .start-right {
-        transform: translateX(20%); /* Slide into view from the right */
-    }
-
 }

@@ -8,7 +8,7 @@ import { useElementOnScreen } from "../misc/useElementOnScreen";
 function LoginPage() {
 
     const { fetchUserData } = useUser();
-    useElementOnScreen(".form", "slide-in-up", {threshold: 0.1});
+    useElementOnScreen(".form", "slide-in", {threshold: 0.1});
 
     // For switching pages
     const navigate = useNavigate();
