@@ -38,7 +38,7 @@ class Teacher(models.Model):
     academic_id = models.CharField(max_length=15)
 
     def __str__(self):
-        return f'Teacher {self.user.username}'
+        return f'{self.academic_title} {self.user.first_name} {self.user.last_name}'
 
     class Meta:
         db_table = 'teachers'

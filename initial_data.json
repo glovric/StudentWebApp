@@ -1,200 +1,334 @@
 [
 {
     "model": "auth.user",
-    "pk": 1,
+    "pk": 15,
     "fields": {
-        "password": "pbkdf2_sha256$870000$NNZoDJjlgaenLsAxiEJyTT$GGQ1FAoJ51+5yvSKC9PhY30pZpTMlBSV23AcG9GOqjU=",
-        "last_login": "2024-10-31T11:37:55.929Z",
-        "is_superuser": true,
-        "username": "root",
-        "first_name": "",
-        "last_name": "",
-        "email": "root@fakz.org",
-        "is_staff": true,
+        "password": "pbkdf2_sha256$870000$KdG3hDhDj05Pn7wnUjfPcQ$f7FHkOymDdXPqCpwr9O5a7IvdJW3GgiEcuM/HBU3gwg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "amarshall",
+        "first_name": "Alfred",
+        "last_name": "Marshall",
+        "email": "amarshall@fakz.org",
+        "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:01:29.593Z",
+        "date_joined": "2024-11-12T18:06:43.499Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 3,
+    "pk": 16,
     "fields": {
-        "password": "pbkdf2_sha256$870000$HDu0Oi04pMm3CFHgmy5awe$tOkaGyk6wiW23A+modJEBLgl1gC4XZc9NNloaWtGess=",
+        "password": "pbkdf2_sha256$870000$mOeVvPXnbQGIGuz4ws88rW$+6AdyBNnipqi9IM2q5OM0ssmYAmwsM/oWBLqBDcwi4I=",
         "last_login": null,
         "is_superuser": false,
-        "username": "glovric",
-        "first_name": "Grgo",
-        "last_name": "Lovric",
-        "email": "glovric@fakz.org",
+        "username": "jkeynes",
+        "first_name": "John",
+        "last_name": "Keynes",
+        "email": "jkeynes@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:05:19.110Z",
+        "date_joined": "2024-11-12T18:07:11.916Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 4,
+    "pk": 17,
     "fields": {
-        "password": "pbkdf2_sha256$870000$kDgX0w4zsYGaxXfxiO3wcG$0bzYtEsJeac50XyeW7CEtr6eqcPjL7PJ4Fyp51BqaRI=",
+        "password": "pbkdf2_sha256$870000$WxQLeAVbA5tlcNaiJw62FJ$aA7Oew7GgY1t8WIa6kxHyl32fNkVaku/IuQGlwY3BzQ=",
         "last_login": null,
         "is_superuser": false,
-        "username": "kbabic",
-        "first_name": "Kristian",
-        "last_name": "Babic",
-        "email": "kbabic@fakz.org",
+        "username": "dricardo",
+        "first_name": "David",
+        "last_name": "Ricardo",
+        "email": "dricardo@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:07:36.330Z",
+        "date_joined": "2024-11-12T18:07:26.261Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 5,
+    "pk": 18,
     "fields": {
-        "password": "pbkdf2_sha256$870000$XFmClJoBvGLjYvqOKQ1Z8i$900T0et74fdO8lSW/mVfD6x9rOBBXPPky/Qz8+l3SCc=",
+        "password": "pbkdf2_sha256$870000$Dh9PBMDuI2Uxohuo7hBkqD$WODrARJzP/f57zsitFvlWQAbRSio5BfMgNvcd0uJkEg=",
         "last_login": null,
         "is_superuser": false,
-        "username": "fmosner",
-        "first_name": "Fran",
-        "last_name": "Mosner",
-        "email": "fmosner@fakz.org",
+        "username": "hmarkowitz",
+        "first_name": "Harry",
+        "last_name": "Markowitz",
+        "email": "hmarkowitz@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:39:02.604Z",
+        "date_joined": "2024-11-12T18:07:46.107Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 6,
+    "pk": 19,
     "fields": {
-        "password": "pbkdf2_sha256$870000$bxOvKLHMYLTYzwSnl6pEVQ$6eul1193BGb7eE7ivYpN/b0XmoE3ou1sRbGEBEFRq2s=",
+        "password": "pbkdf2_sha256$870000$Ohgy4ZW45qpNLTYFtYmsuD$FTdHIaFBk7oD7hbgOL/F4tLQ08LmjaMOuzXNhXusds0=",
         "last_login": null,
         "is_superuser": false,
-        "username": "apirsic",
-        "first_name": "Antun",
-        "last_name": "Pirsic",
-        "email": "apirsic@fakz.org",
+        "username": "dritchie",
+        "first_name": "Dennis",
+        "last_name": "Ritchie",
+        "email": "dritchie@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:39:11.537Z",
+        "date_joined": "2024-11-12T18:19:10.161Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 8,
+    "pk": 20,
     "fields": {
-        "password": "pbkdf2_sha256$870000$cWN9U7lhGSBurxformq9V5$EHU/1ZmkWt/jVUbvrLOuKkD66VuMXZE5wDzxUeXePwY=",
+        "password": "pbkdf2_sha256$870000$xBevWZ0sPidxQE7AIg1e8V$4qhbD7EFjU5uWqJJu0yqXmTH5yh8Ytgy8qNZLT+als8=",
         "last_login": null,
         "is_superuser": false,
-        "username": "mvajda",
-        "first_name": "Matija",
-        "last_name": "Vajda",
-        "email": "mvajda@fakz.org",
+        "username": "hwickham",
+        "first_name": "Hadley",
+        "last_name": "Wickham",
+        "email": "hwickham@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-27T17:39:41.432Z",
+        "date_joined": "2024-11-12T18:22:16.585Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 9,
+    "pk": 21,
     "fields": {
-        "password": "pbkdf2_sha256$870000$esNar0lFIBU7egq6i4s9vu$6aWtg12eb5n7hWjf7qmyg2wQZX3o+gei4wR3pukhTQ0=",
+        "password": "pbkdf2_sha256$870000$k9rPH9O8XTu3ZhTg8P7jSc$KCSQuFk+mzFCAnhQ1leL+yX7+pS34Ym3TvbAhBrLll8=",
         "last_login": null,
         "is_superuser": false,
-        "username": "vtomasevic",
-        "first_name": "Vito",
-        "last_name": "Tomasevic",
-        "email": "vtomasevic@fakz.org",
+        "username": "ghinton",
+        "first_name": "Geoffrey",
+        "last_name": "Hinton",
+        "email": "ghinton@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-30T17:59:35.444Z",
+        "date_joined": "2024-11-12T18:24:06.391Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 10,
+    "pk": 22,
     "fields": {
-        "password": "pbkdf2_sha256$870000$v2flpUo1gv4Je9zrpMsoiZ$8YQJsbBNybN3F4HanrjVbQ9Lg25TC+s4RNYSo/VXIjc=",
+        "password": "pbkdf2_sha256$870000$NmrsPFIutiPyRioSBPKu0P$Vob5u4ub0MotgU/faJZ0w75Q+tBuOuIkOSX9VZ4fUjw=",
         "last_login": null,
         "is_superuser": false,
-        "username": "icesar",
-        "first_name": "Ivan",
-        "last_name": "Cesar",
-        "email": "icesar@fakz.org",
+        "username": "lpauling",
+        "first_name": "Linus",
+        "last_name": "Pauling",
+        "email": "lpauling@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-30T18:19:05.262Z",
+        "date_joined": "2024-11-12T18:28:01.671Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 11,
+    "pk": 23,
     "fields": {
-        "password": "pbkdf2_sha256$870000$qLoPXcOVBqcRar6E0byUjM$ka2Gvl0XISkQFb+5zI6QFLq8aVm6hlZdDGP34Oj6Qq0=",
+        "password": "pbkdf2_sha256$870000$cXoBA4ENdg8Kw26JOZckc0$O2DpD1WRfMOiUXzStb5m8IGoY7sfPhtEtYqbulVKJbU=",
         "last_login": null,
         "is_superuser": false,
-        "username": "mcarapina",
-        "first_name": "Mia",
-        "last_name": "Carapina",
-        "email": "mcarapina@fakz.org",
+        "username": "sgreen",
+        "first_name": "Sophia",
+        "last_name": "Green",
+        "email": "sgreen@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-30T18:21:09.830Z",
+        "date_joined": "2024-11-12T18:37:30.728Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 12,
+    "pk": 24,
     "fields": {
-        "password": "!IIWShARWMubo6N3aqdQbTWqMflThguEEXrGvKxAP",
+        "password": "pbkdf2_sha256$870000$v7fhd1qKi09AW9be3Pi5eP$4HHlhof7vVZB7i2VE9CJGbbvSFuiC8Wc26AZsp1hYY8=",
         "last_login": null,
         "is_superuser": false,
-        "username": "jsnajder",
-        "first_name": "Jan",
-        "last_name": "Snajder",
-        "email": "jsnajder@fakz.org",
+        "username": "mcarter",
+        "first_name": "Maxwell",
+        "last_name": "Carter",
+        "email": "mcarter@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-31T11:38:53Z",
+        "date_joined": "2024-11-12T18:37:43.537Z",
         "groups": [],
         "user_permissions": []
     }
 },
 {
     "model": "auth.user",
-    "pk": 13,
+    "pk": 25,
     "fields": {
-        "password": "pbkdf2_sha256$870000$TW63JPeQloKCkfOqb2M3e1$qtHwDfwP1Ea772wIdRgknJ8JVGAZhXdPxRJ461M1Yn4=",
+        "password": "pbkdf2_sha256$870000$IaD9wG1LGKjFZqSeAOyEiL$9njo+9eaLk1b1prbLAOqut5boQCd82prbU0MWP8PAbY=",
         "last_login": null,
         "is_superuser": false,
-        "username": "lmileusnic",
-        "first_name": "Lovro",
-        "last_name": "Mileusnic",
-        "email": "lmileusnic@fakz.org",
+        "username": "obrooks",
+        "first_name": "Olivia",
+        "last_name": "Brooks",
+        "email": "obrooks@fakz.org",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2024-10-31T12:48:42.358Z",
+        "date_joined": "2024-11-12T18:37:56.103Z",
         "groups": [],
         "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 26,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$F7FbPSPFqNzGEiLSYHpcaz$Q6NROOFCpzTVeMbSOtbyB23QGFkKSMl8BCfyre7u9A8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "emitchell",
+        "first_name": "Ethan",
+        "last_name": "Mitchell",
+        "email": "emitchell@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:38:07.966Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 27,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$nC6K6mAFike7YMyyK6P8kz$k/WRzH0fb8SACFq0cm5P03KlqLxSYshmHSiYzS9bJLs=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "iturner",
+        "first_name": "Isabella",
+        "last_name": "Turner",
+        "email": "iturner@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:38:28.178Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 28,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$V4IsMHJloh9q6jICC7snTh$WeLyuhMSEKh4mfX0/8vVgnNarlZX4AWT/su/3vSHDf4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "lrobinson",
+        "first_name": "Liam",
+        "last_name": "Robinson",
+        "email": "lrobinson@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:38:41.077Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 29,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$jks5RkEgoduQcz38KAIMcu$1Noy7Z2DvNhPUfcc0qNBn3u2lVLxfEMVBTzVKq8AG6E=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "charris",
+        "first_name": "Chloe",
+        "last_name": "Harris",
+        "email": "charris@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:38:52.158Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 30,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Ak4SL8dK9WBo1BxOcyiqAU$qLmlkrGpuDJZRXM3lLha2ZsdMJ0vnNLLnN36u1GT6K8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "landerson",
+        "first_name": "Lucas",
+        "last_name": "Anderson",
+        "email": "landerson@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:39:02.708Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 31,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$pxcN4A66GDKPgjjtf0i8Xl$JSc26T5l70kwD6oTqrlRiIWUL5vRgRfowoVGCvn8i5Y=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "aking",
+        "first_name": "Amelia",
+        "last_name": "King",
+        "email": "aking@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:39:11.437Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 32,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$KEKdHQYP6w6EBfjnERyjNI$/AJNslR0akmqlHMS1USTq1x8OZH3GLwv25hJzJobaPI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "bclark",
+        "first_name": "Benjamin",
+        "last_name": "Clark",
+        "email": "bclark@fakz.org",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T18:39:23.004Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "9gxddrx14c5ivh5mfauwpxh8deqovx74",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP_C2RBYcKEevfuGZmFBqgaS0p6MfzckPeh1ZjJvMdO-lXnvaZ0XFhehrTj9wkDxmeow_KB6bzK2uq1LkCORh-3y1ji9rkf7NyjUy_iyxpi1V-zAoAFC77MJoFzAjOC80lGhBcsWAc6TY-sUg40ZMk_E4vMF2J03EQ:1tAvBY:shLHh9QuTvCH0iEZFYTJW2zzkfmX5KNB6s7VxD2C3o8",
+        "expire_date": "2024-11-26T18:00:16.199Z"
     }
 },
 {
@@ -220,7 +354,7 @@
         "name": "Mathematics",
         "points": 5,
         "image_url": "https://www.clarkson.edu/sites/default/files/2023-06/Mathematics-Hero-1600x900.jpg",
-        "coordinator": 1
+        "coordinator": 13
     }
 },
 {
@@ -230,37 +364,7 @@
         "name": "Programming",
         "points": 3,
         "image_url": "https://static01.nyt.com/images/2023/06/05/opinion/02Manjoo-1/02Manjoo-1-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
-        "coordinator": 1
-    }
-},
-{
-    "model": "api.course",
-    "pk": 3,
-    "fields": {
-        "name": "Machine Learning",
-        "points": 6,
-        "image_url": "https://innovait.cat/wp-content/uploads/2022/03/Machine-learning.png",
-        "coordinator": 4
-    }
-},
-{
-    "model": "api.course",
-    "pk": 4,
-    "fields": {
-        "name": "Monetary policy",
-        "points": 4,
-        "image_url": "https://www.imf.org/-/media/Images/IMF/About/Factsheets/2022/monetary-policy-graphics-03.ashx",
-        "coordinator": 5
-    }
-},
-{
-    "model": "api.course",
-    "pk": 6,
-    "fields": {
-        "name": "PLC programming",
-        "points": 4,
-        "image_url": "https://i.ytimg.com/vi/ReTtgzN-Dmc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD_ckGfYvqPlnmTt3Fg2zAVsjgO-w",
-        "coordinator": 2
+        "coordinator": 11
     }
 },
 {
@@ -270,661 +374,518 @@
         "name": "Deep Learning",
         "points": 6,
         "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpQr0KNCHADzdiRzPaqWOficwIDg3bf-jtqg&s",
-        "coordinator": 4
+        "coordinator": 13
     }
 },
 {
-    "model": "api.student",
-    "pk": 3,
-    "fields": {
-        "user": [
-            "kbabic"
-        ],
-        "academic_id": "42048424"
-    }
-},
-{
-    "model": "api.student",
-    "pk": 4,
-    "fields": {
-        "user": [
-            "fmosner"
-        ],
-        "academic_id": "42015314"
-    }
-},
-{
-    "model": "api.student",
-    "pk": 7,
-    "fields": {
-        "user": [
-            "mvajda"
-        ],
-        "academic_id": "42013185"
-    }
-},
-{
-    "model": "api.student",
+    "model": "api.course",
     "pk": 8,
     "fields": {
-        "user": [
-            "vtomasevic"
-        ],
-        "academic_id": "42086149"
+        "name": "Microeconomics",
+        "points": 4,
+        "image_url": "https://www.gktoday.in/wp-content/uploads/2019/05/20230825011049.png",
+        "coordinator": 7
     }
 },
 {
-    "model": "api.teacher",
-    "pk": 1,
-    "fields": {
-        "user": [
-            "glovric"
-        ],
-        "department": "CS",
-        "academic_title": "doc. dr. sc.",
-        "academic_id": "4200000000000"
-    }
-},
-{
-    "model": "api.teacher",
-    "pk": 2,
-    "fields": {
-        "user": [
-            "icesar"
-        ],
-        "department": "CS",
-        "academic_title": "univ. mag. comp.",
-        "academic_id": "42012345"
-    }
-},
-{
-    "model": "api.teacher",
-    "pk": 3,
-    "fields": {
-        "user": [
-            "mcarapina"
-        ],
-        "department": "CS",
-        "academic_title": "univ. mag. el.",
-        "academic_id": "42054321"
-    }
-},
-{
-    "model": "api.teacher",
-    "pk": 4,
-    "fields": {
-        "user": [
-            "jsnajder"
-        ],
-        "department": "ML",
-        "academic_title": "doc. dr. sc.",
-        "academic_id": "42078923"
-    }
-},
-{
-    "model": "api.teacher",
-    "pk": 5,
-    "fields": {
-        "user": [
-            "apirsic"
-        ],
-        "department": "Economics",
-        "academic_title": "univ. bacc. oec.",
-        "academic_id": "42078925"
-    }
-},
-{
-    "model": "api.teacher",
-    "pk": 6,
-    "fields": {
-        "user": [
-            "lmileusnic"
-        ],
-        "department": "CS",
-        "academic_title": "univ. mag. comp.",
-        "academic_id": "42078912"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 61,
-    "fields": {
-        "student": 8,
-        "course": 7,
-        "enrollment_date": "2024-11-02T23:05:40.394Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 62,
-    "fields": {
-        "student": 7,
-        "course": 7,
-        "enrollment_date": "2024-11-02T23:05:44.311Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 64,
-    "fields": {
-        "student": 4,
-        "course": 3,
-        "enrollment_date": "2024-11-02T23:09:16.804Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 65,
-    "fields": {
-        "student": 4,
-        "course": 4,
-        "enrollment_date": "2024-11-02T23:09:19.484Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 67,
-    "fields": {
-        "student": 3,
-        "course": 2,
-        "enrollment_date": "2024-11-04T18:31:21.501Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 68,
-    "fields": {
-        "student": 7,
-        "course": 2,
-        "enrollment_date": "2024-11-05T10:19:22.273Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 70,
-    "fields": {
-        "student": 4,
-        "course": 2,
-        "enrollment_date": "2024-11-05T17:58:35.943Z"
-    }
-},
-{
-    "model": "api.enrollment",
-    "pk": 72,
-    "fields": {
-        "student": 7,
-        "course": 4,
-        "enrollment_date": "2024-11-06T11:06:45.131Z"
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 1,
-    "fields": {
-        "teacher": 2,
-        "course": 2
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 2,
-    "fields": {
-        "teacher": 3,
-        "course": 2
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 3,
-    "fields": {
-        "teacher": 2,
-        "course": 3
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 4,
-    "fields": {
-        "teacher": 1,
-        "course": 4
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 6,
-    "fields": {
-        "teacher": 4,
-        "course": 6
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 7,
-    "fields": {
-        "teacher": 1,
-        "course": 7
-    }
-},
-{
-    "model": "api.associate",
-    "pk": 8,
-    "fields": {
-        "teacher": 2,
-        "course": 7
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 1,
-    "fields": {
-        "action_time": "2024-10-27T17:05:12.420Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "student"
-        ],
-        "object_id": "1",
-        "object_repr": "Grgo Lovrić",
-        "action_flag": 3,
-        "change_message": ""
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 2,
-    "fields": {
-        "action_time": "2024-10-27T17:06:12.810Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "1",
-        "object_repr": "Teacher glovric",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 3,
-    "fields": {
-        "action_time": "2024-10-27T17:07:13.316Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "1",
-        "object_repr": "Mathematics",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 4,
-    "fields": {
-        "action_time": "2024-10-27T17:39:32.100Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "student"
-        ],
-        "object_id": "6",
-        "object_repr": "Matija Vajda",
-        "action_flag": 3,
-        "change_message": ""
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 5,
-    "fields": {
-        "action_time": "2024-10-27T22:04:34.897Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "2",
-        "object_repr": "Programming",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 6,
-    "fields": {
-        "action_time": "2024-10-30T18:19:37.953Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "2",
-        "object_repr": "Teacher icesar",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 7,
-    "fields": {
-        "action_time": "2024-10-30T18:20:13.087Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "2",
-        "object_repr": "Programming",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"associates\"]}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 8,
-    "fields": {
-        "action_time": "2024-10-30T18:21:40.669Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "3",
-        "object_repr": "Teacher mcarapina",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 9,
     "fields": {
-        "action_time": "2024-10-30T18:25:02.469Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "associate"
-        ],
-        "object_id": "2",
-        "object_repr": "Associate Teacher mcarapina in course Programming",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "Macroeconomics",
+        "points": 3,
+        "image_url": "https://streetfins.com/wp-content/uploads/2023/10/feature-macroeconomics-globe-cc0.webp",
+        "coordinator": 10
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 10,
     "fields": {
-        "action_time": "2024-10-31T11:38:53.101Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "auth",
-            "user"
-        ],
-        "object_id": "12",
-        "object_repr": "jsnajder",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "International Trade",
+        "points": 3,
+        "image_url": "https://cdn.corporatefinanceinstitute.com/assets/international-trade.jpeg",
+        "coordinator": 8
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 11,
     "fields": {
-        "action_time": "2024-10-31T11:39:22.778Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "auth",
-            "user"
-        ],
-        "object_id": "12",
-        "object_repr": "jsnajder",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\"]}}]"
+        "name": "Financial Analysis",
+        "points": 3,
+        "image_url": "https://media.licdn.com/dms/image/C5612AQHTuTUugYiGNA/article-cover_image-shrink_600_2000/0/1593301442717?e=2147483647&v=beta&t=tNGwiul0zuKUWoKeogN4JJ29JpQc0qPs8beM8ObAg-Q",
+        "coordinator": 9
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 12,
     "fields": {
-        "action_time": "2024-10-31T11:39:45.484Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "student"
-        ],
-        "object_id": "11",
-        "object_repr": "Jan Snajder",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "Data Science",
+        "points": 5,
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDftuFUUbSKIMKilkbok1gdhmJI399o_j9Qw&s",
+        "coordinator": 12
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 13,
     "fields": {
-        "action_time": "2024-10-31T11:40:11.941Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "4",
-        "object_repr": "Teacher jsnajder",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "Robotics",
+        "points": 4,
+        "image_url": "https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2019/10/14084818/abstract-robot-thinking-800x450.jpg",
+        "coordinator": 11
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 14,
     "fields": {
-        "action_time": "2024-10-31T11:41:11.882Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "3",
-        "object_repr": "Machine Learning",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "Biochemistry",
+        "points": 4,
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStwD5u1BBQAXMic8kg43ETUrHM8HvX6EwuGA&s",
+        "coordinator": 14
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.course",
     "pk": 15,
     "fields": {
-        "action_time": "2024-10-31T11:42:02.667Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "5",
-        "object_repr": "Teacher apirsic",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "name": "Health Administration",
+        "points": 2,
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDo1o8h8YIHE7FA9SHuAHcw2vcgbCQejjgRg&s",
+        "coordinator": 9
     }
 },
 {
-    "model": "admin.logentry",
-    "pk": 16,
-    "fields": {
-        "action_time": "2024-10-31T11:42:43.662Z",
-        "user": [
-            "root"
-        ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "4",
-        "object_repr": "Monetary policy",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 17,
     "fields": {
-        "action_time": "2024-10-31T12:46:33.643Z",
         "user": [
-            "root"
+            "sgreen"
         ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "5",
-        "object_repr": "Macroeconomics",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42014278"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 18,
     "fields": {
-        "action_time": "2024-10-31T12:47:11.540Z",
         "user": [
-            "root"
+            "mcarter"
         ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "6",
-        "object_repr": "PLC programming",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42094641"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 19,
     "fields": {
-        "action_time": "2024-10-31T12:47:54.097Z",
         "user": [
-            "root"
+            "obrooks"
         ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "7",
-        "object_repr": "Deep Learning",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42078679"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 20,
     "fields": {
-        "action_time": "2024-10-31T12:49:14.487Z",
         "user": [
-            "root"
+            "emitchell"
         ],
-        "content_type": [
-            "api",
-            "teacher"
-        ],
-        "object_id": "6",
-        "object_repr": "Teacher lmileusnic",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42033438"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 21,
     "fields": {
-        "action_time": "2024-10-31T12:49:55.524Z",
         "user": [
-            "root"
+            "iturner"
         ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "8",
-        "object_repr": "Cybersecurity",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42032493"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 22,
     "fields": {
-        "action_time": "2024-10-31T12:50:51.274Z",
         "user": [
-            "root"
+            "lrobinson"
         ],
-        "content_type": [
-            "api",
-            "course"
-        ],
-        "object_id": "9",
-        "object_repr": "Clinical medicine",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42091426"
     }
 },
 {
-    "model": "admin.logentry",
+    "model": "api.student",
     "pk": 23,
     "fields": {
-        "action_time": "2024-10-31T12:51:31.552Z",
         "user": [
-            "root"
+            "charris"
         ],
-        "content_type": [
-            "api",
-            "course"
+        "academic_id": "42062968"
+    }
+},
+{
+    "model": "api.student",
+    "pk": 24,
+    "fields": {
+        "user": [
+            "landerson"
         ],
-        "object_id": "10",
-        "object_repr": "Mathematical modeling",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "academic_id": "42083328"
+    }
+},
+{
+    "model": "api.student",
+    "pk": 25,
+    "fields": {
+        "user": [
+            "aking"
+        ],
+        "academic_id": "42048425"
+    }
+},
+{
+    "model": "api.student",
+    "pk": 26,
+    "fields": {
+        "user": [
+            "bclark"
+        ],
+        "academic_id": "42019888"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "amarshall"
+        ],
+        "department": "Economics",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000000"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "dricardo"
+        ],
+        "department": "Economics",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000001"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "hmarkowitz"
+        ],
+        "department": "Economics",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000002"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "jkeynes"
+        ],
+        "department": "Economics",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000003"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "dritchie"
+        ],
+        "department": "Computer Science",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000004"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "hwickham"
+        ],
+        "department": "Computer Science",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000005"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "ghinton"
+        ],
+        "department": "Computer Science",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000006"
+    }
+},
+{
+    "model": "api.teacher",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "lpauling"
+        ],
+        "department": "Biology",
+        "academic_title": "dr. sc.",
+        "academic_id": "42000007"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 86,
+    "fields": {
+        "student": 24,
+        "course": 1,
+        "enrollment_date": "2024-11-12T18:40:04.188Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 87,
+    "fields": {
+        "student": 17,
+        "course": 1,
+        "enrollment_date": "2024-11-12T18:40:04.188Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 88,
+    "fields": {
+        "student": 22,
+        "course": 1,
+        "enrollment_date": "2024-11-12T18:40:04.188Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 89,
+    "fields": {
+        "student": 24,
+        "course": 2,
+        "enrollment_date": "2024-11-12T18:40:29.389Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 90,
+    "fields": {
+        "student": 26,
+        "course": 2,
+        "enrollment_date": "2024-11-12T18:40:29.389Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 91,
+    "fields": {
+        "student": 22,
+        "course": 2,
+        "enrollment_date": "2024-11-12T18:40:29.389Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 92,
+    "fields": {
+        "student": 26,
+        "course": 7,
+        "enrollment_date": "2024-11-12T18:40:44.507Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 93,
+    "fields": {
+        "student": 20,
+        "course": 7,
+        "enrollment_date": "2024-11-12T18:40:44.507Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 94,
+    "fields": {
+        "student": 17,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.181Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 95,
+    "fields": {
+        "student": 18,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.181Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 96,
+    "fields": {
+        "student": 19,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.181Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 97,
+    "fields": {
+        "student": 21,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.181Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 98,
+    "fields": {
+        "student": 23,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.182Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 99,
+    "fields": {
+        "student": 25,
+        "course": 8,
+        "enrollment_date": "2024-11-12T18:41:06.182Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 100,
+    "fields": {
+        "student": 18,
+        "course": 9,
+        "enrollment_date": "2024-11-12T18:41:24.364Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 101,
+    "fields": {
+        "student": 26,
+        "course": 9,
+        "enrollment_date": "2024-11-12T18:41:24.364Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 102,
+    "fields": {
+        "student": 22,
+        "course": 9,
+        "enrollment_date": "2024-11-12T18:41:24.364Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 103,
+    "fields": {
+        "student": 23,
+        "course": 9,
+        "enrollment_date": "2024-11-12T18:41:24.364Z"
+    }
+},
+{
+    "model": "api.enrollment",
+    "pk": 104,
+    "fields": {
+        "student": 21,
+        "course": 10,
+        "enrollment_date": "2024-11-12T18:41:41.045Z"
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 13,
+    "fields": {
+        "teacher": 9,
+        "course": 1
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 14,
+    "fields": {
+        "teacher": 13,
+        "course": 1
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 15,
+    "fields": {
+        "teacher": 14,
+        "course": 2
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 16,
+    "fields": {
+        "teacher": 11,
+        "course": 7
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 17,
+    "fields": {
+        "teacher": 8,
+        "course": 8
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 18,
+    "fields": {
+        "teacher": 13,
+        "course": 9
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 19,
+    "fields": {
+        "teacher": 9,
+        "course": 10
+    }
+},
+{
+    "model": "api.associate",
+    "pk": 20,
+    "fields": {
+        "teacher": 11,
+        "course": 10
     }
 }
 ]

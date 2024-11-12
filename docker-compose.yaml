@@ -36,9 +36,9 @@ services:
       DB_NAME: fakzapp # Database name to use
       DB_USER: root
       DB_PASSWORD: pass
-      DJANGO_SUPERUSER_USERNAME: root
-      DJANGO_SUPERUSER_EMAIL: root@localhost
-      DJANGO_SUPERUSER_PASSWORD: pass
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_EMAIL: admin@fakz.org
+      DJANGO_SUPERUSER_PASSWORD: admin
     volumes:
       - ./initial_data.json:/app/initial_data.json  # Mount initial_data.json into the /app directory in the container
     depends_on:

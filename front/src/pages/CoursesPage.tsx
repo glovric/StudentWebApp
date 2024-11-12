@@ -14,6 +14,16 @@ function CoursesPage() {
 
     const [availableCourses, setAvailableCourses] = useState<AvailableCourse[] | null>(null);
 
+    const shuffleArray = (arr: AvailableCourse[]) => {
+        const shuffledArray = [...arr];  // Make a copy to avoid mutating original state
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));  // Random index between 0 and i
+          // Swap elements at index i and j
+          [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+      };
+
     const fetchAvailableCourses = async () => {
         
         try {
@@ -30,7 +40,8 @@ function CoursesPage() {
 
             // If response is ok (user exists), return JWT token
             if (response.ok) {
-                setAvailableCourses(result);
+                const shuffled = shuffleArray(result);
+                setAvailableCourses(shuffled);
             } else {
                 console.error("Courses failed:", result);
             }
