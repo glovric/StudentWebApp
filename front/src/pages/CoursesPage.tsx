@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { animateCourseRows } from '../misc/useElementOnScreen';
 
 type AvailableCourse = {
@@ -13,6 +13,11 @@ type AvailableCourse = {
 function CoursesPage() {
 
     const [availableCourses, setAvailableCourses] = useState<AvailableCourse[] | null>(null);
+    const windowWidthRef = useRef(window.innerWidth); // Store window width in a ref
+
+    const handleResize = () => {
+        windowWidthRef.current = window.innerWidth;  // Update the ref without triggering a re-render
+    };
 
     const shuffleArray = (arr: AvailableCourse[]) => {
         const shuffledArray = [...arr];  // Make a copy to avoid mutating original state
@@ -53,6 +58,14 @@ function CoursesPage() {
     }
 
     useEffect(() => {
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => { window.removeEventListener('resize', handleResize); };
+    }, []); // Empty dependency array ensures this effect runs once on mount and cleanup on unmount
+
+    useEffect(() => {
         const fetchCourses = async () => {
             await fetchAvailableCourses(); // Wait for courses to load
         };
@@ -61,9 +74,7 @@ function CoursesPage() {
     }, []); // Only run once on mount
     
     useEffect(() => {
-        if (availableCourses) {
-            animateCourseRows();  // Now that availableCourses is populated, observe elements
-        }
+        animateCourseRows(windowWidthRef.current < 768);
     }, [availableCourses]);  // Trigger when availableCourses changes
 
     return(
@@ -73,8 +84,7 @@ function CoursesPage() {
                 availableCourses.length > 0 ? (
                     <div className="course-container">
                         {availableCourses.map((course, index) => {
-                            // Determine which class to use based on index
-                            const start_side = Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right';
+                            const start_side = windowWidthRef.current >= 768 ? (Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right') : (index % 2 === 0 ? 'start-left' : 'start-right');
                             return (
                                 <div className={`course-card ${start_side}`} key={index}>
                                     <img src={course.image_url} alt={course.name}></img>

@@ -11,11 +11,21 @@
 @import "pages/RegisterSuccessPage.scss";
 @import "pages/ProfilePage.scss";
 
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .wrapper {
     width: 90%; /* or a fixed width, like 600px */
     margin: 0 auto; /* Horizontally center */
     background-color: $light-gray; //rgb(236, 236, 236);
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+    @media(max-width: 768px) {
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
 }
 
 button {

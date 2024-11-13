@@ -13,7 +13,6 @@ function Navbar() {
     const handleLogOut = () => {
         removeJWT();
         setUserData(null);
-        console.log("User logged out.");
         navigate('/login');
     }
 
@@ -21,7 +20,7 @@ function Navbar() {
 
         <nav className="navbar">
 
-            <div>
+            <div className="logo-div">
                 <img src={myImage}></img>
             </div>
 

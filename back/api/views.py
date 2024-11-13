@@ -9,6 +9,8 @@ from .models import Course, Student, Teacher, Enrollment
 from .serializers import CourseSerializer, TeacherSerializer
 from .helpers import get_user_type, get_available_student_courses, get_student_courses, get_teacher_courses
 from rest_framework import generics
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.exceptions import AuthenticationFailed, ValidationError
 
 class CourseView(generics.ListAPIView):
     queryset = Course.objects.all()
@@ -209,7 +211,6 @@ class TeacherDashboardView(APIView):
         except Course.DoesNotExist:
             return JsonResponse({"detail": "Course not found."}, status=404)
 
-        
 class StudentDashboardView(APIView):
     
     permission_classes = [IsAuthenticated]
@@ -268,4 +269,10 @@ class StudentDashboardView(APIView):
             else:
                 return JsonResponse({'message': 'Failed in StudentDashboardView.'}, status=400)
 
-                
+class CustomTokenObtainPairView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        try:
+            response = super().post(request, *args, **kwargs)
+            return response
+        except AuthenticationFailed as e:
+            return JsonResponse({"detail": "Invalid username or password. Please try again."}, status=401)

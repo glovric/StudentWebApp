@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { setJWT } from '../misc/Tokens';
 import { useUser } from "../misc/UserContext";
@@ -8,6 +8,7 @@ import { useElementOnScreen } from "../misc/useElementOnScreen";
 function LoginPage() {
 
     const { fetchUserData } = useUser();
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     useElementOnScreen(".form", "slide-in", {threshold: 0.1});
 
     // For switching pages
@@ -47,14 +48,14 @@ function LoginPage() {
                 const { access, refresh } = result;
                 setJWT({ access, refresh });
                 fetchUserData();
-                console.log('Login successful!');
                 navigate('/');
             } else {
-                console.log(`Login failed: ${result.message}`);
+                console.error(`Login failed: ${result.detail}`);
+                setErrorMessage(result.detail);
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
 
     };
@@ -80,7 +81,11 @@ function LoginPage() {
                 </input>
 
                 <button type="submit">Submit</button>
+
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Display the error message */}
             </form>
+
+            
 
         </div>
     )

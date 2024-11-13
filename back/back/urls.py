@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api.views import (CourseView, TeacherView, UserDataView, EnrollView, 
-                       RegisterView, TeacherDashboardView, StudentDashboardView)
+                       RegisterView, TeacherDashboardView, StudentDashboardView, CustomTokenObtainPairView)
 from api.helpers import get_csrf_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', CourseView.as_view(), name='course-list'),
     path('csrf-token/', get_csrf_token, name='get-csrf-token'),
-    path('login/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
+    path('login/', CustomTokenObtainPairView.as_view(), name='token-obtain-pair'),
     path('register/', RegisterView.as_view(), name='register'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('user-data/', UserDataView.as_view(), name='user-data-view'),

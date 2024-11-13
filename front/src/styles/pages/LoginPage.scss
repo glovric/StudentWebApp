@@ -19,6 +19,14 @@
         opacity: 0; /* Start invisible */
         transform: translateY(50%); /* Start off-screen to the left */
         transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+
+        @media(max-width: 768px) {
+            width: 85%;
+
+            button {
+                margin-top: 15px;
+            }
+        }
     
         h3 {
             color: $secondary-color-gold;
@@ -33,6 +41,10 @@
             width: 300px;     /* Makes the input field responsive */
             box-sizing: border-box; /* Ensures padding is included in width */
             margin: 10px;
+
+            @media(max-width: 768px) {
+                width: 65%;
+            }
         }
     
     }

@@ -2,6 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from "zxcvbn";
 import { useElementOnScreen } from "../misc/useElementOnScreen";
+import { getCSRFToken } from "../misc/Tokens";
 
 
 function RegisterPage() {
@@ -53,7 +54,7 @@ function RegisterPage() {
                 const { email, username } = result; // Extract email from response
                 navigate('/register-success', { state: { email, username } });
             } else {
-                console.log(`Registration failed: ${result.message}`);
+                console.error(`Registration failed: ${result.message}`);
                 setErrorMessage(result.message);
             }
 
@@ -61,20 +62,6 @@ function RegisterPage() {
             console.log(`An error occurred: ${(error as Error).message}`);
         }
     }
-
-    // Obtaining CSRF token (CORS stuff)
-    const getCSRFToken = async () => {
-        const response = await fetch('http://localhost:8000/csrf-token/', {
-            method: 'GET',
-            credentials: 'include',
-        });
-        if (!response.ok) {
-            throw new Error('Failed to fetch CSRF token');
-        }
-    
-        const data = await response.json();
-        return data.csrfToken; // Return the CSRF token
-    };
 
     const [strengthScore, setStrengthScore] = useState(-1);
 
