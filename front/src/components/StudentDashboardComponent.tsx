@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getJWT } from '../misc/Tokens';
 import { animateCourseRows } from '../misc/useElementOnScreen';
 
@@ -29,6 +29,12 @@ function StudentDashboardComponent() {
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
     const [popupOpacity, setPopupOpacity] = useState<number>(1); // New state for opacity
+
+    const windowWidthRef = useRef(window.innerWidth); // Store window width in a ref
+
+    const handleResize = () => {
+        windowWidthRef.current = window.innerWidth;  // Update the ref without triggering a re-render
+    };
 
     const enrollToCourse = async (courseID: number, courseName: string) => {
 
@@ -169,6 +175,14 @@ function StudentDashboardComponent() {
     }
 
     useEffect(() => {
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => { window.removeEventListener('resize', handleResize); };
+    }, []); // Empty dependency array ensures this effect runs once on mount and cleanup on unmount
+
+    useEffect(() => {
         const fetchCourses = async () => {
             await fetchAvailableCourses(); // Wait for courses to load
             await fetchStudentCourses();
@@ -179,13 +193,13 @@ function StudentDashboardComponent() {
     
     useEffect(() => {
         if (availableCourses) {
-            animateCourseRows();  // Now that availableCourses is populated, observe elements
+            animateCourseRows(windowWidthRef.current < 768);  // Now that availableCourses is populated, observe elements
         }
     }, [availableCourses]);  // Trigger when availableCourses changes
 
     useEffect(() => {
         if(studentCourses) {
-            animateCourseRows();
+            animateCourseRows(windowWidthRef.current < 768);
         }
     }, [studentCourses]);  // Trigger when availableCourses changes
 
