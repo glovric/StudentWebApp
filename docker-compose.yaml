@@ -4,10 +4,10 @@ services:
     image: mysql:8.0.11
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: fakzapp
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
     ports:
       - "3307:3306"
     healthcheck:
@@ -32,13 +32,13 @@ services:
     ports:
       - "8000:8000"  # Maps port 8000 in the container to port 8000 on the host
     environment:
-      DB_HOST: db # Database service is named db
-      DB_NAME: fakzapp # Database name to use
-      DB_USER: root
-      DB_PASSWORD: pass
-      DJANGO_SUPERUSER_USERNAME: admin
-      DJANGO_SUPERUSER_EMAIL: admin@fakz.org
-      DJANGO_SUPERUSER_PASSWORD: admin
+      DB_HOST: $DB_HOST # Database service is named db
+      DB_NAME: $DB_NAME # Database name to use
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DJANGO_SUPERUSER_USERNAME: $DJANGO_SUPERUSER_USERNAME
+      DJANGO_SUPERUSER_EMAIL: $DJANGO_SUPERUSER_EMAIL
+      DJANGO_SUPERUSER_PASSWORD: $DJANGO_SUPERUSER_PASSWORD
     volumes:
       - ./initial_data.json:/app/initial_data.json  # Mount initial_data.json into the /app directory in the container
     depends_on:

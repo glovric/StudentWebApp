@@ -179,28 +179,28 @@ function StudentDashboardComponent() {
         window.addEventListener('resize', handleResize);
 
         return () => { window.removeEventListener('resize', handleResize); };
-    }, []);
+    }, []); //  Ddd listener on component mount (first time rendering)
 
     useEffect(() => {
-        const fetchCourses = async () => {
+        const fetchCourses = async () => { // Fetch courses from API
             await fetchAvailableCourses();
             await fetchStudentCourses();
         };
     
         fetchCourses();
-    }, []);
+    }, []); //  Fetch on component mount (first time rendering)
     
     useEffect(() => {
         if (availableCourses) {
             animateCourseRows(windowWidthRef.current < 768);
         }
-    }, [availableCourses]);
+    }, [availableCourses]); // Animate courses when availableCourses state is updated
 
     useEffect(() => {
         if(studentCourses) {
             animateCourseRows(windowWidthRef.current < 768);
         }
-    }, [studentCourses]);
+    }, [studentCourses]); /// Animate courses when studentCourses state is updated
 
     return(
         <div className='student-dashboard'>

@@ -13,15 +13,7 @@ Before starting, ensure you have the following installed (unless you would like 
 
 1. Clone the repository
 
-2. Create a `.env` file in the root of the project. The variables inside should match the variables defined in `db` service environment section of `docker-compose.yml`. Here is an example:
-
-    docker-compose.yml
-    ```
-    MYSQL_ROOT_PASSWORD: some_root_password
-    MYSQL_DATABASE: some_db_name
-    MYSQL_USER: some_username
-    MYSQL_PASSWORD: some_password
-    ```
+2. Create a `.env` file in the root of the project. Here is an example:
 
     .env
     ```
@@ -29,6 +21,13 @@ Before starting, ensure you have the following installed (unless you would like 
     MYSQL_DATABASE=some_db_name
     MYSQL_USER=some_username
     MYSQL_PASSWORD=some_password
+    DB_HOST=db
+    DB_NAME=some_db_name
+    DB_USER=root
+    DB_PASSWORD=some_root_password
+    DJANGO_SUPERUSER_USERNAME=superuser
+    DJANGO_SUPERUSER_EMAIL=superuser@fakz.org
+    DJANGO_SUPERUSER_PASSWORD=superuser
     ```
 
     The `.env` file is used to ensure healthchecking the database when containers run.

@@ -7,6 +7,7 @@ interface AddCourseComponentProps {
     onCourseAdded: () => void; // Callback to notify parent that the course is added
 }
 
+// Takes onCourseAdded from parent component
 const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
 
     const [selectedAssociates, setSelectedAssociates] = useState<number[]>([]); // Array of selected associate IDs
@@ -14,9 +15,11 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
     const [currentAssociate, setCurrentAssociate] = useState<number | null>(null); // Currently selected associate (to add)
 
     useEffect(() => {
+        // Load associates on page render
         loadAssociates();
     }, []);
 
+    // Load associates from db
     const loadAssociates = async () => {
 
         try {
@@ -70,6 +73,7 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
         return {courseName, coursePoints, courseImage, selectedAssociates};
     }
 
+    // Adding course to db using POST
     const handleAddCourseSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
@@ -147,8 +151,7 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
                     Add Associate
                 </button>
 
-                {/* Display selected associates in a separate div */}
-                {selectedAssociates.length > 0 && (
+                {selectedAssociates.length > 0 && ( // Display selected associates in a separate div
                     <div className="selected-associates">
                         <h4>Selected Associates:</h4>
                         <ul>
