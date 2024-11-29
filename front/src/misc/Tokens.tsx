@@ -22,7 +22,6 @@ export const refreshAccessToken = async () => {
     const refreshToken = getJWT().refresh;
 
     if (!refreshToken) {
-        console.error('No refresh token found. User needs to log in again.');
         return null;
     }
 

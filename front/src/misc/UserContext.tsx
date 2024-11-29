@@ -48,7 +48,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }
 
       if (!response.ok) {
-        console.error('Failed to fetch user data in Context.');
+        console.error('Failed to fetch user data.');
         setUserData(null);
       }
       else {
