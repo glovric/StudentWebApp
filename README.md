@@ -38,7 +38,7 @@ Before starting, ensure you have the following installed (unless you would like 
     docker compose up --build
     ```
 
-4. Once the containers are up, the application should be running and accessible on the port defined in `docker-compose.yml` (e.g., `http://localhost:3001`).
+4. Once the containers are up, the application should be running and accessible on the port defined in `docker-compose.yml` (e.g., `http://localhost:3001` for frontend and `http://localhost:8000/admin` for backend).
 
 5. To stop the running containers, simply use:
 
