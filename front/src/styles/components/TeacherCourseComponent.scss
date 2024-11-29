@@ -13,46 +13,67 @@
     }
 
     table {
-        border-collapse: collapse; /* Collapse borders for a cleaner look */
-        //margin-top: 20px; /* Space above the table */
-        width: 100%; /* Set a width for the table */
+        border-collapse: collapse;
+        //margin-top: 20px;
+        width: 100%;
+        table-layout: fixed;
+
+        @media (max-width: 768px) {
+                width: 100%;
+                overflow-x: auto;
+        }
     }
 
-    /* Table headers and cells */
     th, td {
-        border: 1px solid $secondary-color-gold; /* Border for cells */
-        padding: 10px; /* Padding inside cells */
-        text-align: left; /* Align text to the left */
-        width: 100%; /* Ensure each cell takes full width */
+        border: 1px solid $secondary-color-gold;
+        padding: 10px;
+        text-align: left;
+        width: 100%;
     }
 
-    /* Ensure table rows take full width */
+    td {
+        @media (max-width: 768px) {
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+    }
+
+    button {
+        @media (max-width: 768px) {
+            word-wrap:normal;
+            word-break: normal;
+        }
+    }
+
     tr {
-        width: 100%; /* Ensure rows take the full width of the table */
+        width: 100%;
     }
 
-    /* Header styling */
     th {
-        background-color: $primary-color-green /* Light background for header */
+        background-color: $primary-color-green;
     }
 
     .enroll-div {
         display: flex;
         justify-content:space-between;
-        //align-items: center;
     }
 
     .course-heading {
         display: flex;
-        justify-content: space-between; /* Ensure space between items */
-        align-items: center; /* Vertically center the items */
-        width: 100%; /* Take up the full width of the parent */
-        //margin:10px;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
 
         .centered-item {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+
+            @media (max-width: 768px) {
+                position: relative;
+                left: 20px;
+                transform: none;
+            }
         }
         
         .right-item {

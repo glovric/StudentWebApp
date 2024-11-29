@@ -21,6 +21,19 @@
         color: $secondary-color-gold;
         font-size: 15px;
         padding: 10px 10px 0 0;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+            align-items: center;
+            padding: 0 0 20px 0;
+            flex-direction: row;
+        }
+
+        button {
+            @media (max-width: 768px) {
+                margin-left: 20px;
+            }
+        }
     }
 
     img {
@@ -28,11 +41,11 @@
     }
 
     ul {
-        list-style-type: none; /* Remove default bullets */
+        list-style-type: none;
         padding: 10px;
         margin: 0;
         display: flex;
-        justify-content: space-evenly; /* Default alignment */
+        justify-content: space-evenly;
         flex-grow: 1;
         align-items: center;
     }
@@ -46,25 +59,25 @@
         color: #BEAA6F;
         height: 30%;
         padding: 10px;
-        position: relative; /* Required for absolute positioning of the pseudo-element */
-        overflow: hidden;   /* Ensures the border stays within the element */
+        position: relative;
+        overflow: hidden;  
     }
 
     li::before {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 50%;  /* Start at the center */
+        left: 50%; 
         width: 0;
         height: 4px;
         background-color: #BEAA6F;
-        transition: width 0.3s ease, left 0.3s ease; /* Animates width and position */
+        transition: width 0.3s ease, left 0.3s ease;
     }
 
-    /* Trigger the animation on hover */
+
     li:hover::before {
-        left: 0; /* Move it to the left */
-        width: 100%; /* Expand to full width */
+        left: 0;
+        width: 100%;
     }
 
     li:hover {
@@ -81,17 +94,17 @@
         color: #BEAA6F;
     }
   
-  /* Media query for screens 768px wide or less (mobile/tablet) */
+
     @media screen and (max-width: 768px) {
     
         ul {
-            flex-direction: column; /* Stack the items vertically */
-            align-items: center;    /* Center items horizontally */
+            flex-direction: column;
+            align-items: center;   
         }
     
         li {
-            margin: 10px 0; /* Space between items in vertical layout */
-            text-align: center; /* Center text within each <li> */
+            margin: 10px 0;
+            text-align: center;
         }
         
     }

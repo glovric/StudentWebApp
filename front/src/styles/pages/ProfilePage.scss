@@ -15,9 +15,16 @@
         background-color: $primary-color-green;
         color: $secondary-color-gold;
 
-        opacity: 0; /* Start invisible */
-        transform: translateY(20%); /* Start off-screen to the left */
-        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+        opacity: 0;
+        transform: translateY(20%);
+        transition: transform 0.7s ease, opacity 0.7s ease;
+
+        @media(max-width: 768px) {
+            //align-items:first baseline;
+            //justify-content: start;
+            width: 85%;
+            height: 400px;
+        }
 
         h1 {
             text-decoration: underline;
@@ -26,21 +33,25 @@
         div {
             font-size: 25px;
             margin: 10px 0;
+
+            @media(max-width: 768px) {
+                font-size: 20px;
+            }
         }
 
     }
 
     .left, .right {
-        opacity: 0; /* Start invisible */
-        transition: opacity 0.7s ease, transform 0.7s ease; /* Smooth transition */
+        opacity: 0;
+        transition: opacity 0.7s ease, transform 0.7s ease;
     }
     
     .left {
-        transform: translateX(-50%); /* Start off-screen to the left */
+        transform: translateX(-50%);
     }
     
     .right {
-        transform: translateX(50%); /* Start off-screen to the right */
+        transform: translateX(50%);
     }
 
 }

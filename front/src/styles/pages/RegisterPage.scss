@@ -20,9 +20,9 @@
         height: 50%;
         background-color: $primary-color-green;
     
-        opacity: 0; /* Start invisible */
-        transform: translateY(-50%); /* Start off-screen to the left */
-        transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+        opacity: 0;
+        transform: translateY(-50%);
+        transition: transform 0.7s ease, opacity 0.7s ease;
 
         @media(max-width: 768px) {
             width: 85%;
@@ -40,11 +40,11 @@
         }
     
         input {
-            font-size: 18px; /* Adjusts the text size */
-            padding: 10px;   /* Increases space inside the input */
-            height: 30px;    /* Sets a specific height */
-            width: 300px;     /* Makes the input field responsive */
-            box-sizing: border-box; /* Ensures padding is included in width */
+            font-size: 18px;
+            padding: 10px;  
+            height: 30px;   
+            width: 300px;    
+            box-sizing: border-box;
             margin: 10px;
 
             @media(max-width: 768px) {

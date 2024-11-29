@@ -28,12 +28,12 @@ function StudentDashboardComponent() {
 
     const [popupVisible, setPopupVisible] = useState<boolean>(false);
     const [popupMessage, setPopupMessage] = useState<string>('');
-    const [popupOpacity, setPopupOpacity] = useState<number>(1); // New state for opacity
+    const [popupOpacity, setPopupOpacity] = useState<number>(1);
 
-    const windowWidthRef = useRef(window.innerWidth); // Store window width in a ref
+    const windowWidthRef = useRef(window.innerWidth);
 
     const handleResize = () => {
-        windowWidthRef.current = window.innerWidth;  // Update the ref without triggering a re-render
+        windowWidthRef.current = window.innerWidth;
     };
 
     const enrollToCourse = async (courseID: number, courseName: string) => {
@@ -175,45 +175,44 @@ function StudentDashboardComponent() {
     }
 
     useEffect(() => {
-        // Add event listener for window resize
+
         window.addEventListener('resize', handleResize);
 
-        // Cleanup event listener on component unmount
         return () => { window.removeEventListener('resize', handleResize); };
-    }, []); // Empty dependency array ensures this effect runs once on mount and cleanup on unmount
+    }, []);
 
     useEffect(() => {
         const fetchCourses = async () => {
-            await fetchAvailableCourses(); // Wait for courses to load
+            await fetchAvailableCourses();
             await fetchStudentCourses();
         };
     
         fetchCourses();
-    }, []); // Only run once on mount
+    }, []);
     
     useEffect(() => {
         if (availableCourses) {
-            animateCourseRows(windowWidthRef.current < 768);  // Now that availableCourses is populated, observe elements
+            animateCourseRows(windowWidthRef.current < 768);
         }
-    }, [availableCourses]);  // Trigger when availableCourses changes
+    }, [availableCourses]);
 
     useEffect(() => {
         if(studentCourses) {
             animateCourseRows(windowWidthRef.current < 768);
         }
-    }, [studentCourses]);  // Trigger when availableCourses changes
+    }, [studentCourses]);
 
     return(
         <div className='student-dashboard'>
 
-            Available courses
+            <h1>Available courses</h1>
 
             {availableCourses ? (
                 availableCourses.length > 0 ? (
                     <div className="course-container">
                         {availableCourses.map((course, index) => {
                             // Determine which class to use based on index
-                            const start_side = Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right';
+                            const start_side = windowWidthRef.current >= 768 ? (Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right') : (index % 2 === 0 ? 'start-left' : 'start-right');
                             return (
                                 <div className={`course-card ${start_side}`} key={index}>
                                     <img src={course.image_url} alt={course.name}></img>
@@ -231,20 +230,20 @@ function StudentDashboardComponent() {
                         })}
                     </div>
                 ) : (
-                    <p>No courses available.</p>
+                    <p className='error-message'>No courses available.</p>
                 )
             ) : (
-                <p>Loading courses...</p>
+                <p className='error-message'>Loading courses...</p>
             )}
 
-            Your courses.
+            <h1>Your courses</h1>
 
             {studentCourses ? (
                 studentCourses.length > 0 ? (
                     <div className="course-container">
                         {studentCourses.map((course, index) => {
                             // Determine which class to use based on index
-                            const start_side = Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right';
+                            const start_side = windowWidthRef.current >= 768 ? (Math.floor(index / 3) % 2 === 0 ? 'start-left' : 'start-right') : (index % 2 === 0 ? 'start-left' : 'start-right');
                             return (
                                 <div className={`course-card ${start_side}`} key={index}>
                                     <img src={course.image_url} alt={course.name}></img>
@@ -262,10 +261,10 @@ function StudentDashboardComponent() {
                         })}
                     </div>
                 ) : (
-                    <p>No courses available.</p>
+                    <p className='error-message'>No courses available.</p>
                 )
             ) : (
-                <p>Loading courses...</p>
+                <p className='error-message'>Loading courses...</p>
             )}
 
             {popupVisible && (

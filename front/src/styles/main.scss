@@ -12,12 +12,12 @@
 @import "pages/ProfilePage.scss";
 
 html, body {
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 .wrapper {
-    width: 90%; /* or a fixed width, like 600px */
-    margin: 0 auto; /* Horizontally center */
+    width: 90%;
+    margin: 0 auto;
     background-color: $light-gray; //rgb(236, 236, 236);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 
@@ -29,23 +29,23 @@ html, body {
 }
 
 button {
-    background-color: $secondary-color-gold; /* Bootstrap primary color */
-    color: $primary-color-green;              /* Text color */
-    border: none;              /* No border */
-    padding: 10px 20px;        /* Vertical and horizontal padding */
-    font-size: 16px;           /* Font size */
-    border-radius: 5px;        /* Rounded corners */
-    cursor: pointer;           /* Pointer on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    background-color: $secondary-color-gold;
+    color: $primary-color-green;             
+    border: none;             
+    padding: 10px 20px;       
+    font-size: 16px;          
+    border-radius: 5px;       
+    cursor: pointer;          
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #82744b; /* Darker shade on hover */
+    background-color: #82744b;
 }
 
 button:active {
-    transform: translateY(0); /* Reset lift on click */
-    background-color: $secondary-color-gold; /* Even darker shade on click */
+    transform: translateY(0);
+    background-color: $secondary-color-gold;
 }
 
 .popup {
@@ -61,15 +61,15 @@ button:active {
 }
 
 .start-left {
-    opacity: 0; /* Start invisible */
-    transform: translateX(-20%); /* Start off-screen to the left */
-    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+    opacity: 0;
+    transform: translateX(-20%);
+    transition: transform 0.7s ease, opacity 0.7s ease;
 }
 
 .start-right {
-    opacity: 0; /* Start invisible */
-    transform: translateX(20%); /* Start off-screen to the left */
-    transition: transform 0.7s ease, opacity 0.7s ease; /* Smooth transition */
+    opacity: 0;
+    transform: translateX(20%);
+    transition: transform 0.7s ease, opacity 0.7s ease;
 }
 
 // Using .wrapper in front to increase specificty
