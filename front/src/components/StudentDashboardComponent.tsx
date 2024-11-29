@@ -58,8 +58,6 @@ function StudentDashboardComponent() {
             const result = await response.json();
 
             if (response.ok) {
-                console.log("Successfully enrolled in course:", result);
-                // Optionally, refresh the course list or show a success message
                 setPopupMessage(`You have successfully enrolled in course: ${courseName}`);
                 setPopupVisible(true);
                 setPopupOpacity(1); // Reset opacity to 1
@@ -71,10 +69,10 @@ function StudentDashboardComponent() {
                 fetchAvailableCourses();
                 fetchStudentCourses();
             } else {
-                console.log("Enrollment failed:", result);
+                console.error("Enrollment failed:", result);
             }
         } catch (error) {
-            console.log(`An error occurred during enrollment: ${(error as Error).message}`);
+            console.error(`An error occurred during enrollment: ${(error as Error).message}`);
         }
     }
 
@@ -93,9 +91,7 @@ function StudentDashboardComponent() {
                 },
             });
 
-            // If response is ok (user exists), return JWT token
             if (response.status == 204) {
-                console.log("Izbrisan enrollment");
                 setPopupMessage(`You have successfully unenrolled from course: ${courseName}`);
                 setPopupVisible(true);
                 setPopupOpacity(1); // Reset opacity to 1
@@ -107,11 +103,11 @@ function StudentDashboardComponent() {
                 fetchAvailableCourses();
                 fetchStudentCourses();
             } else {
-                console.log("Brisanje enrollmenta failed.");
+                console.error("Deleting enrollment failed.");
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     }
 
@@ -132,7 +128,6 @@ function StudentDashboardComponent() {
 
             const result = await response.json();
 
-            // If response is ok (user exists), return JWT token
             if (response.ok) {
                 setAvailableCourses(result);
             } else {
@@ -140,7 +135,7 @@ function StudentDashboardComponent() {
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
 
     }
@@ -169,7 +164,7 @@ function StudentDashboardComponent() {
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
 
     }

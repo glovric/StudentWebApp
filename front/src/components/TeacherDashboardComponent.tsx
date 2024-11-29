@@ -50,10 +50,10 @@ function TeacherDashboardComponent() {
             if (response.ok) {
                 setCourses(result);
             } else {
-                console.log("Dashboard failed:", result);
+                console.error("Dashboard failed:", result);
             }
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     };
 
@@ -85,10 +85,10 @@ function TeacherDashboardComponent() {
                 }, 3000); // Show for 3 seconds
                 loadTeacherCourses();
             } else {
-                console.log("Failed to delete enrollment.");
+                console.error("Failed to delete enrollment.");
             }
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     };
 
@@ -122,10 +122,10 @@ function TeacherDashboardComponent() {
                 }, 3000); // Show for 3 seconds
                 loadTeacherCourses();
             } else {
-                console.log("Enrollment failed:", result);
+                console.error("Enrollment failed:", result);
             }
         } catch (error) {
-            console.log(`An error occurred during enrollment: ${(error as Error).message}`);
+            console.error(`An error occurred during enrollment: ${(error as Error).message}`);
         }
     };
 
@@ -147,10 +147,10 @@ function TeacherDashboardComponent() {
             if (response.status === 204) {
                 loadTeacherCourses();
             } else {
-                console.log("Course adding failed");
+                console.error("Course adding failed");
             }
         } catch (error) {
-            console.log(`An error occurred during enrollment: ${(error as Error).message}`);
+            console.error(`An error occurred during enrollment: ${(error as Error).message}`);
         }
 
     }

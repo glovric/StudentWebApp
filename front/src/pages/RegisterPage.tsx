@@ -50,7 +50,6 @@ function RegisterPage() {
 
             // If response is ok (user exists), it returns JWT token
             if (response.ok) {
-                console.log('Registration successful!');
                 const { email, username } = result; // Extract email from response
                 navigate('/register-success', { state: { email, username } });
             } else {
@@ -59,7 +58,7 @@ function RegisterPage() {
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     }
 

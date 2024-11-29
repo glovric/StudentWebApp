@@ -52,7 +52,7 @@ function CoursesPage() {
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
 
     }

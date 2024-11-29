@@ -39,10 +39,10 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
             if (response.ok) {
                 setAssociates(result);
             } else {
-                console.log("Add Course associate fetch failed:", result);
+                console.error("Add Course associate fetch failed:", result);
             }
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     }
 
@@ -103,7 +103,7 @@ const AddCourseComponent: FC<AddCourseComponentProps> = ({ onCourseAdded }) => {
             }
 
         } catch (error) {
-            console.log(`An error occurred: ${(error as Error).message}`);
+            console.error(`An error occurred: ${(error as Error).message}`);
         }
     }
 
