@@ -30,7 +30,7 @@ Before starting, ensure you have the following installed (unless you would like 
     DJANGO_SUPERUSER_PASSWORD=superuser
     ```
 
-    The `.env` file is used to ensure healthchecking the database when containers run.
+    Set usernames and passwords to your liking and ensure `MYSQL_DATABASE` and `DB_NAME` variables have the same value.
 
 3. Build and start the application using Docker Compose:
 
