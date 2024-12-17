@@ -18,7 +18,7 @@ from django.urls import path
 from api.views import (CourseView, TeacherView, UserDataView, EnrollView, 
                        RegisterView, TeacherDashboardView, StudentDashboardView, CustomTokenObtainPairView)
 from api.helpers import get_csrf_token
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

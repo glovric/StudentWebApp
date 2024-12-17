@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from .serializers import CourseSerializer
 
+"""
+Custom helper methods.
+"""
+
 def get_csrf_token(request):
     """
     Method for fetching CSRF token.
@@ -23,14 +27,14 @@ def get_user_type(user_id: int):
         student = Student.objects.get(user_id=user_id)
         return 'student', student
     except Student.DoesNotExist:
-        pass  # Continue to check for Teacher
+        pass
 
     try:
         # Check if the user_id belongs to a Teacher
         teacher = Teacher.objects.get(user_id=user_id)
         return 'teacher', teacher
     except Teacher.DoesNotExist:
-        pass  # If not found in either model
+        pass
 
     try:
         user = User.objects.get(id=user_id)

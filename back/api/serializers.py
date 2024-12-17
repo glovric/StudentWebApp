@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from .models import Course, Teacher
 
+"""
+Serializers for converting Django models to Python objects
+"""
+
 class CourseSerializer(serializers.ModelSerializer):
     
     coordinator = serializers.SerializerMethodField()
@@ -28,7 +32,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ['id', 'academic_id', 'academic_title', 'name']  # Adjust fields as needed
+        fields = ['id', 'academic_id', 'academic_title', 'name']
         
     def get_name(self, obj):
         if obj.user:

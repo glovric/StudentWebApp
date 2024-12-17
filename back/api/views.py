@@ -10,14 +10,24 @@ from .serializers import CourseSerializer, TeacherSerializer
 from .helpers import get_user_type, get_available_student_courses, get_student_courses, get_teacher_courses
 from rest_framework import generics
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.exceptions import AuthenticationFailed, ValidationError
+from rest_framework.exceptions import AuthenticationFailed
+
+"""
+Views are classes which handle HTTP requests. 
+Requests can be handled via standalone functions or classes in Django
+"""
 
 class CourseView(generics.ListAPIView):
+    """
+    Class for fetching and displaying Courses
+    """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
 class TeacherView(generics.ListAPIView):
-
+    """
+    Class for fetching and displaying teachers.
+    """
     permission_classes = [IsAuthenticated]
     
     queryset = Teacher.objects.all()
@@ -100,8 +110,6 @@ class EnrollView(APIView):
 
         print(f'Data u enrollu:', data)
         print(f'User {user.id} wants to enroll at {course_id}')
-
-        #return JsonResponse({'success': True, 'message': "Proslo."}, status=200)
     
         # Get the current student's record
         if student_id:
@@ -126,7 +134,7 @@ class EnrollView(APIView):
         try:
             enrollment = Enrollment.objects.get(id=enrollment_id)
             enrollment.delete()
-            return JsonResponse({}, status=204)  # Empty response body  # No content returned on successful deletion
+            return JsonResponse({}, status=204)
         except Enrollment.DoesNotExist:
             return JsonResponse({"detail": "Enrollment not found."}, status=404)
         
@@ -159,17 +167,17 @@ class TeacherDashboardView(APIView):
 
                 'enrolled_students': [{
                     'id': student.id,
-                    'name': str(student),  # or any other representation
+                    'name': str(student),
                     'email': student.user.email,
                     'academic_id': student.academic_id,
-                    'enrollment_id': enrollment.id,  # Assuming you can get this from a related enrollment
+                    'enrollment_id': enrollment.id,
                 } for student in course.students.all()
                 for enrollment in Enrollment.objects.filter(student=student, course=course)],  # Get enrollment for each student
 
                 'not_enrolled_students': [
                     {
                         'id': student.id,
-                        'name': str(student),  # or any other representation
+                        'name': str(student),
                         'academic_id': student.academic_id,
                     } for student in all_students
                     if student.id not in course.students.values_list('id', flat=True)
@@ -207,7 +215,7 @@ class TeacherDashboardView(APIView):
             course = Course.objects.get(id=course_id)
             course.delete()
             print(f'izbrisao sam course {course_id}')
-            return JsonResponse({}, status=204)  # Empty response body  # No content returned on successful deletion
+            return JsonResponse({}, status=204)
         except Course.DoesNotExist:
             return JsonResponse({"detail": "Course not found."}, status=404)
 
